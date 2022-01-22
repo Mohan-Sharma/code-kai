@@ -1,10 +1,10 @@
 package org.msharma.algorithm.problems;
 
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * This class demonstrates how we can find the minimum window by sorting which the whole array becomes sorted.

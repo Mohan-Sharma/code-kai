@@ -1,6 +1,6 @@
 package org.msharma.algorithm.stack;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Mohan Sharma Created on 09/09/17.
