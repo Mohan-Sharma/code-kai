@@ -1,0 +1,23 @@
+version: 2.1
+executors:
+  my-custom-executor:
+    docker:
+      - image: cimg/openjdk:11.0
+        auth:
+          # ensure you have first added these secrets
+          # visit app.circleci.com/settings/project/github/Mohan-Sharma/code-kai/environment-variables
+          username: $DOCKER_HUB_USER
+          password: $DOCKER_HUB_PASSWORD
+jobs:
+  build-code-kai:
+
+    executor: my-custom-executor
+    steps:
+      - checkout
+      - run: |
+          java --version
+
+workflows:
+  my-custom-workflow:
+    jobs:
+      - build-code-kai
