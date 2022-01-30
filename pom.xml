@@ -19,7 +19,8 @@
 	<modules>
 		<module>ds-problems</module>
 		<module>common-dependencies</module>
-	</modules>
+        <module>cashbackengine</module>
+    </modules>
 
 	<properties>
 		<java.version>11</java.version>
