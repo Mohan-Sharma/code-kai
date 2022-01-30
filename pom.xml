@@ -20,6 +20,7 @@
 		<module>ds-problems</module>
 		<module>common-dependencies</module>
         <module>cashbackengine</module>
+        <module>itext-tutorial</module>
     </modules>
 
 	<properties>
