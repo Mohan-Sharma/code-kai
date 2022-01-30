@@ -1,4 +1,4 @@
-package com.code.kai.leetcode.curated75.medium.arrays;
+package com.code.kai.leetcode.curated75.medium.strings;
 
 import java.util.ArrayList;
 import java.util.List;
