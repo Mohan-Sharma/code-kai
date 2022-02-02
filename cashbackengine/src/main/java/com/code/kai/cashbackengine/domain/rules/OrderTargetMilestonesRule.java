@@ -1,9 +1,9 @@
 package com.code.kai.cashbackengine.domain.rules;
 
-import com.landmarkshops.cashbackengine.cashbackengine.domain.model.ClaimCashBack;
-import com.landmarkshops.cashbackengine.cashbackengine.domain.model.Stage;
-import com.landmarkshops.cashbackengine.cashbackengine.persistence.ClaimRepository;
-import com.landmarkshops.cashbackengine.cashbackengine.presentation.data.OrdersData;
+import com.code.kai.cashbackengine.domain.model.ClaimCashBack;
+import com.code.kai.cashbackengine.domain.model.Stage;
+import com.code.kai.cashbackengine.persistence.ClaimRepository;
+import com.code.kai.cashbackengine.presentation.data.OrdersData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
