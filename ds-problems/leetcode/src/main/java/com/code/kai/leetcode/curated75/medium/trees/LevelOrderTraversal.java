@@ -1,5 +1,6 @@
-package com.code.kai.leetcode.curated75.easy.trees;
+package com.code.kai.leetcode.curated75.medium.trees;
 
+import com.code.kai.leetcode.curated75.easy.trees.TreeNode;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;

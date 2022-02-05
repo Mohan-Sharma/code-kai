@@ -1,4 +1,6 @@
-package com.code.kai.leetcode.curated75.easy.trees;
+package com.code.kai.leetcode.curated75.medium.trees;
+
+import com.code.kai.leetcode.curated75.easy.trees.TreeNode;
 
 /**
  * @author Mohan Sharma
