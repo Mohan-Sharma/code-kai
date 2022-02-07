@@ -3,7 +3,7 @@ package com.code.kai.leetcode.curated75.medium.trees;
 /**
  * @author Mohan Sharma
  */
-public class AddAndSearchWord extends Trie{
+public class AddAndSearchWord extends Trie {
 
     @Override
     public boolean search(String word) {
