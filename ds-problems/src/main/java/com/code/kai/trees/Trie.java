@@ -21,8 +21,10 @@ public class Trie {
             TrieNode newNode = new TrieNode();
             if(!children.containsKey(c)) {
                 children.put(c, newNode);
+                current = newNode;
+            } else {
+                current = children.get(c);
             }
-            current = newNode;
         }
         current.setEndOfWord(true);
     }
@@ -41,7 +43,9 @@ public class Trie {
     public static void main(String[] args) {
         Trie trie = new Trie();
         trie.insert("MAN");
-        System.out.println(trie.find("MAN"));
+        trie.insert("MANY");
+        trie.insert("MAC");
+        System.out.println(trie.find("MAD"));
     }
 }
 

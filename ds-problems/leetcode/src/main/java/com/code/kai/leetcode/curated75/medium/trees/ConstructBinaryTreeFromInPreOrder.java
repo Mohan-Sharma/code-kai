@@ -1,5 +1,6 @@
-package com.code.kai.leetcode.curated75.easy.trees;
+package com.code.kai.leetcode.curated75.medium.trees;
 
+import com.code.kai.leetcode.curated75.easy.trees.TreeNode;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
