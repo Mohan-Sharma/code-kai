@@ -65,8 +65,7 @@ public class FirstKMaximumOccurringWords {
     private void preOrderTraversal(TrieNode node, PriorityQueue<TrieNode> pq) {
         if(node == null)
             return;
-        for(Map.Entry<Character, TrieNode> entry : node.getChildren().entrySet()) {
-            TrieNode current = entry.getValue();
+        for(TrieNode current : node.getChildren().values()) {
             if(current.getCount() != 0) {
                 pq.add(new TrieNode(current.getCount(), current.getWord()));
             }
