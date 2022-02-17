@@ -1,20 +1,21 @@
 package com.code.kai.leetcode.curated75.easy.strings;
 
+/**
+ * @author Mohan Sharma
+ */
 public class ValidPalindrome {
     public static boolean isPalindrome(String s) {
-        s = s.toLowerCase();
-        int start = 0; int end = s.length() - 1;
+        int start = 0, end = s.length() - 1;
         while (start < end) {
-            int f = s.charAt(start);
-            int l = s.charAt(end);
-            if ((f < 48 || f > 57) && (f < 'a' || f > 'z')) {
+            char charAtStart = Character.toLowerCase(s.charAt(start));
+            char charAtEnd = Character.toLowerCase(s.charAt(end));
+            if (!(charAtStart >= 'a' && charAtStart <= 'z') && !(charAtStart >= '0' && charAtStart <= '9'))
                 start++;
-            }
-            else if ((l < 48 || l > 57) &&  (l < 'a' || l > 'z')) {
+            else if (!(charAtEnd >= 'a' && charAtEnd <= 'z') && !(charAtEnd >= '0' && charAtEnd <= '9'))
                 end--;
-            } else {
-                if ( f != l)
-                    return false;
+            else if (charAtStart != charAtEnd)
+                return false;
+            else {
                 start++;
                 end--;
             }
@@ -23,6 +24,6 @@ public class ValidPalindrome {
     }
 
     public static void main(String[] args) {
-        System.out.println(isPalindrome("PP"));
+        System.out.println(isPalindrome("0P"));
     }
 }

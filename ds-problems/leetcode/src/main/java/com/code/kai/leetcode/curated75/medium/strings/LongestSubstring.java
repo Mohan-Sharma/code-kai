@@ -8,6 +8,22 @@ import java.util.Map;
  */
 public class LongestSubstring {
 
+    public static int longestSubstringStorage(String s) {
+        if (s.length() < 2)
+            return s.length();
+        Map<Character, Integer> storage = new HashMap<>();
+        int i = 0, j = 0, max = -1;
+        while (i < s.length()) {
+            char ch = s.charAt(i);
+            if (storage.containsKey(ch)) {
+                j = Math.max(j, storage.get(ch) + 1);
+            }
+            max = Math.max(max, i - j + 1);
+            storage.put(ch, i++);
+        }
+        return max;
+    }
+
     public static int lengthOfLongestSubstring(String s) {
         if (s.length() < 2)
             return s.length();
@@ -28,13 +44,33 @@ public class LongestSubstring {
         return length;
     }
 
-    private static void getIndexOfFirstDuplicate(String substring) {
-        for (int i=0; i<substring.length(); i++) {
+    public static int longestSubstring(String s) {
+        if (s.length() < 2)
+            return s.length();
+        int i = 0, j= 1, length = 1;
+        String sub =  "" + s.charAt(0);
 
+        while (j < s.length()) {
+            if (sub.indexOf(s.charAt(j)) >= 0) {
+                char ch = s.charAt(j);
+                while (i < j) {
+                    if (sub.charAt(i) == ch) {
+                        sub = sub.substring(i + 1) + ch;
+                        i = 0;
+                        break;
+                    }
+                    i++;
+                }
+            } else {
+                sub += s.charAt(j);
+                length = Math.max(length, sub.length());
+            }
+            j++;
         }
+        return length;
     }
 
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring("dvdfdabc"));
+        System.out.println(longestSubstring("bbbbb"));
     }
 }
