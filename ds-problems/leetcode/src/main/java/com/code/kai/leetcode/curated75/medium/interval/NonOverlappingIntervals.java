@@ -7,7 +7,11 @@ import java.util.Comparator;
  * @author Mohan Sharma
  */
 public class NonOverlappingIntervals {
+
+    // similar to maximum number of intervals that are non-overlapping.
     public static int eraseOverlapIntervals(int[][] intervals) {
+        // algo: find non overlapping count then substract from length of interval
+        // it will give the count of overlapping
         int count = 0;
         if (intervals.length < 2) {
             return count;
