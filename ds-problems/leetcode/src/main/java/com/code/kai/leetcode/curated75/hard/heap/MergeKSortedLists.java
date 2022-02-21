@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
  */
 public class MergeKSortedLists {
 
-    public static ListNode mergeKLists(ListNode[] lists) {
+    public static ListNode mergeKListsPriorityQueue(ListNode[] lists) {
         PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
         for (ListNode node : lists) {
             while (node != null) {
@@ -39,8 +39,6 @@ public class MergeKSortedLists {
             cur.next = next;
             cur = next;
         }
-
-        System.out.println(mergeKLists(new ListNode[] {root}));
     }
 }
 

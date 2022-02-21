@@ -43,9 +43,9 @@ public class SinglyLinkedList {
         size++;
     }
 
-    public void iterateList() {
+    public void iterateList(SinglyLinkedListNode head) {
         SinglyLinkedListNode s = head;
-        int pos = 1;
+        int pos = 0;
         while (s != null) {
             System.out.println("Data at position - " + pos++ + " : " + s.getData());
             s = s.getNext();
@@ -53,15 +53,24 @@ public class SinglyLinkedList {
 
     }
 
-    public void reverseTheList() {
+    public SinglyLinkedListNode reverseTheList() {
         SinglyLinkedListNode current = head;
         SinglyLinkedListNode previous = null;
         SinglyLinkedListNode next = null;
-        while (current != null && current.getNext() != null) {
+        while (current != null) {
             next = current.getNext();
             current.setNext(previous);
             previous = current;
             current = next;
         }
+        return previous;
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList list = new SinglyLinkedList();
+        for (int i = 1; i <= 5; i++) {
+            list.insertNode(i);
+        }
+        list.iterateList(list.reverseTheList());
     }
 }
