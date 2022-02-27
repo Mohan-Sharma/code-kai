@@ -11,7 +11,7 @@ public class NonOverlappingIntervals {
     // similar to maximum number of intervals that are non-overlapping.
     public static int eraseOverlapIntervals(int[][] intervals) {
         // algo: find non overlapping count then substract from length of interval
-        // it will give the count of overlapping
+        // it will give the count of overlapping intervals
         int count = 0;
         if (intervals.length < 2) {
             return count;
