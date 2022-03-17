@@ -1,9 +1,5 @@
 package com.code.kai.leetcode.curated75.medium.strings;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author Mohan Sharma
  */
@@ -12,21 +8,20 @@ public class LongestRepeatingCharacter {
     public static int characterReplacement(String s, int k) {
         if (s.length() < 2)
             return s.length();
-        int j=0, i=0, max = -1, maxCount = 0;
-        Map<Character, Integer> dp = new HashMap<>();
-        while (i < s.length()) {
-            dp.compute(s.charAt(i), (key, val) -> val == null ? 1 : val + 1);
-            maxCount = dp.values().stream().max(Comparator.comparingInt(a -> a)).orElse(0);
-            int length = i - j + 1;
-            if (length - maxCount > k) {
-                char leftMostChar = s.charAt(j);
-                dp.put(leftMostChar, dp.getOrDefault(leftMostChar, 0) - 1);
-                j++;
+        int start=0, end=0, maxLen = -1, maxCount = 0;
+        int[] dp = new int[26];
+        while (end < s.length()) {
+            int ch = s.charAt(end) - 'A';
+            dp[ch]++;
+            end++;
+            maxCount = Math.max(maxCount, dp[ch]);
+            while (end - start - maxCount > k) {
+                int leftMostChar = s.charAt(start++) - 'A';
+                dp[leftMostChar]--;
             }
-            max = Math.max(max, i - j + 1);
-            i++;
+            maxLen = Math.max(maxLen, end - start);
         }
-        return max;
+        return maxLen;
     }
 
     public static void main(String[] args) {

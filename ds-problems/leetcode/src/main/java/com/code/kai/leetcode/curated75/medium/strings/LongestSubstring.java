@@ -12,18 +12,20 @@ public class LongestSubstring {
         if (s.length() < 2)
             return s.length();
         Map<Character, Integer> storage = new HashMap<>();
-        int i = 0, j = 0, max = -1;
-        while (i < s.length()) {
-            char ch = s.charAt(i);
+        int end = 0, start = 0, max = -1;
+        while (end < s.length()) {
+            char ch = s.charAt(end);
             if (storage.containsKey(ch)) {
-                j = Math.max(j, storage.get(ch) + 1);
+                start = Math.max(start, storage.get(ch) + 1);
             }
-            max = Math.max(max, i - j + 1);
-            storage.put(ch, i++);
+            max = Math.max(max, end - start + 1);
+            storage.put(ch, end++);
         }
         return max;
     }
 
+    //little slow but works fine. Idea is whenever you find a duplicate clear the map
+    // and move the pointer back to the last repeating char + 1
     public static int lengthOfLongestSubstring(String s) {
         if (s.length() < 2)
             return s.length();
@@ -44,33 +46,31 @@ public class LongestSubstring {
         return length;
     }
 
-    public static int longestSubstring(String s) {
+    public static int longestSubstringUsingTemplate(String s) {
         if (s.length() < 2)
             return s.length();
-        int i = 0, j= 1, length = 1;
-        String sub =  "" + s.charAt(0);
+        int start = 0, end = 0, counter = 0, maxLength = -1;
+        int[] dp = new int[128];
 
-        while (j < s.length()) {
-            if (sub.indexOf(s.charAt(j)) >= 0) {
-                char ch = s.charAt(j);
-                while (i < j) {
-                    if (sub.charAt(i) == ch) {
-                        sub = sub.substring(i + 1) + ch;
-                        i = 0;
-                        break;
-                    }
-                    i++;
-                }
-            } else {
-                sub += s.charAt(j);
-                length = Math.max(length, sub.length());
+        while (end < s.length()) {
+            char ch = s.charAt(end);
+            if (dp[ch] > 0) {
+                counter++;
             }
-            j++;
+            dp[ch]++;
+            end++;
+            while (counter > 0) {
+                char sch = s.charAt(start++);
+                if (dp[sch] > 1)
+                    counter--;
+                dp[sch]--;
+            }
+            maxLength = Math.max(maxLength, end - start);
         }
-        return length;
+        return maxLength;
     }
 
     public static void main(String[] args) {
-        System.out.println(longestSubstring("bbbbb"));
+        System.out.println(longestSubstringUsingTemplate("bbbbb"));
     }
 }

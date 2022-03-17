@@ -29,6 +29,10 @@ public class GraphValidTree {
                 && n == visited.size();
     }
 
+
+    // even in case of cyclic graph we will get visited size equals no of nodes b/c the idea here
+    // is to check if all nodes can be visited. If there is unconnected node then visited size
+    // will be less
     private void populateVisitedNodes(int node, Set<Integer> visited, Map<Integer, List<Integer>> adjacencyList) {
         visited.add(node);
         for (int neighbor : adjacencyList.get(node)) {
@@ -38,6 +42,23 @@ public class GraphValidTree {
                 continue;
             populateVisitedNodes(neighbor, visited, adjacencyList);
         }
+    }
+
+    // since graph is undirected we are creating list from both end b/c [0, 1] and [1, 0]
+    // in this case is not cyclic unless we are give edges as [[0, 1][1, 0]] b/c here n = 2
+    // and edges is 2 so 2+1 != 2 hence cyclic
+    private static Map<Integer, List<Integer>> adjacencyList(int[][] edges) {
+        Map<Integer, List<Integer>> space = new HashMap<>();
+        for (int[] edge : edges) {
+            List<Integer> directedEdges = space.getOrDefault(edge[0], new ArrayList<>());
+            directedEdges.add(edge[1]);
+            space.put(edge[0], directedEdges);
+
+            directedEdges = space.getOrDefault(edge[1], new ArrayList<>());
+            directedEdges.add(edge[0]);
+            space.put(edge[1], directedEdges);
+        }
+        return space;
     }
 
     public static boolean validTree(int n, int[][] edges) {
@@ -58,20 +79,6 @@ public class GraphValidTree {
                 return false;
         }
         return true;
-    }
-
-    private static Map<Integer, List<Integer>> adjacencyList(int[][] edges) {
-        Map<Integer, List<Integer>> space = new HashMap<>();
-        for (int[] edge : edges) {
-            List<Integer> directedEdges = space.getOrDefault(edge[0], new ArrayList<>());
-            directedEdges.add(edge[1]);
-            space.put(edge[0], directedEdges);
-
-            directedEdges = space.getOrDefault(edge[1], new ArrayList<>());
-            directedEdges.add(edge[0]);
-            space.put(edge[1], directedEdges);
-        }
-        return space;
     }
 
     public static void main(String[] args) {

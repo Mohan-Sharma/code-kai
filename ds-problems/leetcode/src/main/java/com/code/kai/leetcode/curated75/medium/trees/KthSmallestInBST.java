@@ -35,7 +35,7 @@ public class KthSmallestInBST {
             return -1;
         List<String> inOrderList = new ArrayList<>();
         getInOrderList(root, inOrderList);
-        if (k - 1 < inOrderList.size()) {
+        if (k <= inOrderList.size()) {
             return Integer.parseInt(inOrderList.get(k - 1));
         } else return -1;
     }

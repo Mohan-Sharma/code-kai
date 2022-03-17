@@ -1,7 +1,6 @@
 package com.code.kai.leetcode.curated75.medium.graph;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,27 +21,38 @@ public class LongestConsecutiveSequence {
         return lcs;
     }
 
-    public static int longestConsecutiveByCatchingTheMin(int[] nums) {
-        Set<Integer> set = new HashSet<>();
-        for(int n : nums) {
-            set.add(n);
-        }
-        int best = 0;
-        for(int n : set) {
-            //if the current is the min in the set,
-            // then catch the min and check sequence by incrementing by 1
-            if(!set.contains(n - 1)) {
-                int m = n + 1;
-                while(set.contains(m)) {
-                    m++;
+    public static int longestConsecutiveBF(int[] nums) {
+        int lcs = -1;
+        for (int i = 0; i < nums.length; i++) {
+            int count = 1, cur = nums[i] + 1, start = 0;
+            for (int j = start; j < nums.length; j++) {
+                if (nums[j] == cur) {
+                    cur++;
+                    count++;
+                    j = -1;
                 }
-                best = Math.max(best, m - n);
             }
+            lcs = Math.max(lcs, count);
         }
-        return best;
+        return lcs;
+    }
+
+    //TLE error
+    public static int longestConsecutiveBFWithSpace(int[] nums) {
+        int lcs = -1;
+        Set<Integer> numbers = Arrays.stream(nums).boxed().collect(Collectors.toSet());
+        for (int i = 0; i < nums.length; i++) {
+            int count = 1, cur = nums[i] + 1;
+            while (numbers.contains(cur)) {
+                cur++;
+                count++;
+            }
+            lcs = Math.max(lcs, count);
+        }
+        return lcs;
     }
 
     public static void main(String[] args) {
-        System.out.println(longestConsecutive(new int[] {100, 98, 99}));
+        System.out.println(longestConsecutiveBFWithSpace(new int[] {100, 98, 99}));
     }
 }

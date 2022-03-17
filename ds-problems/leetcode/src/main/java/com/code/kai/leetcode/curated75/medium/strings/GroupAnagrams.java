@@ -13,11 +13,16 @@ public class GroupAnagrams {
     public static List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> space = new HashMap<>();
         for (String word : strs) {
-            //char type 0~127 is enough for constraint 0 <= strs[i].length <= 100
+            // char maximum value is 65535 and even if all characters are same
+            // according to constraint max will be 100, 0 <= strs[i].length <= 100
+            // hence char array should not be a problem
+            // error when chars[0] = 65535 + 1;
+            // if constraint increase use int[] chars = new int[26]; and String key = Arrays.toString(chars);
             char[] chars = new char[26];
             for (char c : word.toCharArray()) {
                 chars[c - 'a']++;
             }
+
             String key = String.valueOf(chars);
             List<String> anagrams = space.getOrDefault(key, new ArrayList<>());
             anagrams.add(word);
