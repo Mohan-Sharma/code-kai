@@ -13,6 +13,11 @@ import java.util.stream.IntStream;
  */
 public class TopKFrequent {
 
+    // If we have the frequency map, one idea is maybe create max heap to store the most frequent element at the top
+    // Using similar idea can we use the most frequent element count as may be the index of an array, so even
+    // if all elements are similar [1, 1, 1] most frequent count will be store at nums.length + 1, [0, 0, 0, 3]
+    // e.g. [1, 2, 2, 3, 3, 3, 4, 4, 4] can be store in a bucket like at 3rd index store 3 and 4 at 2nd index store 2 at 1st index store 1 etc
+    // [0, 1, 2, [3, 4], 0, 0, 0, 0, 0,0]
     public static int[] topKFrequentUsingBucketSort(int[] nums, int k) {
         int[] result = new int[k];
         if (k == 0)

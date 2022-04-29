@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public class LongestSubstring {
 
+    //it works
     public static int longestSubstringStorage(String s) {
         if (s.length() < 2)
             return s.length();
