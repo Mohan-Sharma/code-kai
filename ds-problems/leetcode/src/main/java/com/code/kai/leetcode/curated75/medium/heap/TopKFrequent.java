@@ -91,6 +91,6 @@ public class TopKFrequent {
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(topKFrequentUsingBucketSort(new int[] {1,1,2,2,3}, 2)));
+        System.out.println(Arrays.toString(topKFrequentUsingMaxHeap(new int[] {1,1,2,2,3,3}, 2)));
     }
 }

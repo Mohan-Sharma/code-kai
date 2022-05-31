@@ -12,6 +12,8 @@ public class MinStackUsingFormula {
     int min;
     public MinStackUsingFormula() {}
 
+    // while pushing if newMin is less than prevMin then val to add will be val = 2*newMinValue - prevMinValue
+    // and min will be newMinValue
     public void push(int val) {
         if (list.isEmpty()) {
             list.add(val);
@@ -25,6 +27,9 @@ public class MinStackUsingFormula {
         }
     }
 
+    // while removing if top is less than minValue then change the min using formula above
+    // valStore/top = 2*newMinValue - prevMinValue => preMinValue = 2*newMinValue - valStored
+    // and min will be newMinValue
     public void pop() {
         if (list.isEmpty())
             throw new IllegalStateException("Stack is empty.");

@@ -8,6 +8,46 @@ import java.util.stream.IntStream;
  * @author Mohan Sharma
  */
 public class PermutationInString {
+
+    // very similar to Minimum Window Substring only difference is while checking
+    // the counter we check if the length of window is valid to check the counter
+    // meaning if s length is 2 then we check if end >= 2 then only check if counter==0
+    public boolean checkInclusionUsingTemplate(String s, String t) {
+        if (s.length() > t.length())
+            return false;
+        if (s.equals(t))
+            return true;
+        // the use of counter variable is to track the condition e.g. if s=ab, initially the counter
+        // will be initialized with counter=2, since s.length equals 2, now if we find a character in t
+        // which matches the character in s we decrement counter. Finally when counter becomes 0 and
+        // substring in t's length is equals s we return true
+        int end = 0, counter = s.length();
+        int[] dp = new int[26];
+        // populate the array with count e.g. if s=ab then at 0th index we will have count as 1 and
+        // at 1th index we will have count as 1. Remaining index will be count 0
+        s.chars().forEach(c -> dp[c - 'a']++);
+        while (end < t.length()) {
+            int ch = t.charAt(end++) - 'a';
+            // dp[ch] > 0 means a character in t matches the character in s why? b/c we populated
+            // the dp array with s' characters so the character count of s in dp will always be > 0
+            if (dp[ch] > 0)
+                counter--;
+            dp[ch]--;
+            // end >= s.length means we are eligible to take the substring of t
+            if (end >= s.length()) {
+                if (counter == 0)
+                    return true;
+                // if substring is not found in t populate the character of t from the front since
+                // we decremented using dp[ch]-- so reverting back
+                int sch = t.charAt(end - s.length()) - 'a';
+                dp[sch]++;
+                if (dp[sch] > 0)
+                    counter++;
+            }
+        }
+        return false;
+    }
+
     //O(26n), n = s2.length()
     public boolean checkInclusions(String s1, String s2) {
         if (s1.length() > s2.length())
@@ -20,15 +60,15 @@ public class PermutationInString {
             chars[ch - 'a']--;
             if (i >= s1.length()) {
                 chars[s2.charAt(i - s1.length()) - 'a']++;
+                if (allZeros(chars))
+                    return true;
             }
-            if (allZeros(chars))
-                return true;
         }
         return false;
     }
 
     //O(n), n = s2.length()
-    public boolean checkInclusion(String s1, String s2) {
+   public boolean checkInclusion(String s1, String s2) {
         if (s1.length() > s2.length())
             return false;
         Map<Character, Integer> dp = new HashMap<>();
@@ -58,11 +98,12 @@ public class PermutationInString {
         }
         return false;
     }
+
     private boolean allZeros(int[] chars) {
         return IntStream.of(chars).allMatch(i -> i == 0);
     }
 
     public static void main(String[] args) {
-        System.out.println(new PermutationInString().checkInclusion("ab", "eidbaooo"));
+        System.out.println(new PermutationInString().checkInclusion("a", "ab"));
     }
 }

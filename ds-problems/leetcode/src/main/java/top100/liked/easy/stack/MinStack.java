@@ -13,6 +13,9 @@ public class MinStack {
         stack = new Stack<>();
     }
 
+    // Idea: whenever the val is less the global min, store the global min once then store the val
+    // and mark the value as min. In case of pop if the popped element is equals global min,
+    // then pop again to set the prev min as new min
     public void push(int val) {
         if (val <= min) {
             stack.push(min);

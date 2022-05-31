@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class GenerateParentheses {
 
+    // Open as long as open < n and close as long as close < open and add to result if substr length == 2*n
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
         generateParenthesisRecursively(0, 0, n, result, "");
