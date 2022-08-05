@@ -13,7 +13,10 @@ public class LongestIncreasingSubsequence {
 
     //O(n2)
     private static int lengthOfLISBottomUp(int[] nums) {
+        if (nums.length == 1)
+            return 1;
         int[] dp = new int[nums.length];
+        int length = -1;
         Arrays.fill(dp, 1);
         for (int i = nums.length-2; i >= 0 ; i--) {
             for (int j =i+1; j<nums.length; j++) {
@@ -21,13 +24,17 @@ public class LongestIncreasingSubsequence {
                     dp[i] = Math.max(dp[i], 1 + dp[j]);
                 }
             }
+            length = Math.max(length, dp[i]);
         }
-        return Arrays.stream(dp).max().getAsInt();
+        return length;
     }
 
     //O(nlogn)
     private static int lengthOfLISBinarySearch(int[] nums) {
+        // array to store element at the smallest index for which it is applicable
+        // e.g. [3, 2, 1] so lis[1, ] at 0th index it will be 1 because it is the smallest
         int[] lis = new int[nums.length];
+        // hold current increasing seq length
         int lastIndexOfSeq = 0;
         lis[lastIndexOfSeq++] = nums[0];
         for (int i = 1; i < nums.length; i++) {
@@ -55,6 +62,6 @@ public class LongestIncreasingSubsequence {
     }
 
     public static void main(String[] args) {
-        System.out.println(lengthOfLIS(new int[]{0,1,0,3,2,3}));
+        System.out.println(lengthOfLIS(new int[]{4,5,1,3,2,6}));
     }
 }

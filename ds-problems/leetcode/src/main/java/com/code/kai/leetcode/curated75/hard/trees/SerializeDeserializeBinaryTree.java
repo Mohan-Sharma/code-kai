@@ -39,15 +39,16 @@ public class SerializeDeserializeBinaryTree {
         return root;
     }
 
-    public  void main(String[] args) {
+    public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         TreeNode r = new TreeNode(3);
         r.left = new TreeNode(4);
         r.right = new TreeNode(5);
         root.right = r;
-        String serialize = serialize(root);
+        SerializeDeserializeBinaryTree sd = new SerializeDeserializeBinaryTree();
+        String serialize = sd.serialize(root);
         System.out.println(serialize);
-        System.out.println(deserialize(serialize));
+        System.out.println(sd.deserialize(serialize));
     }
 }

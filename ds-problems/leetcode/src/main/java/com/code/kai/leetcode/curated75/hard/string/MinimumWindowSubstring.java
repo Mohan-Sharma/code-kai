@@ -1,46 +1,66 @@
 package com.code.kai.leetcode.curated75.hard.string;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author Mohan Sharma
  */
 public class MinimumWindowSubstring {
 
     public static String minWindow(String s, String t) {
-        Map<Character, Integer> dp = new HashMap<>();
-        for (char c : t.toCharArray()) {
-            dp.compute(c, (k, v) -> v == null ?  1 : v + 1);
-        }
-        int start = 0, end = 0, minStart = 0, minLen = Integer.MAX_VALUE, counter = t.length();
+        if (s.equals(t))
+            return t;
+        int start = 0, end = 0, need = t.length(), have = 0;
+        int[] having = new int[128];
+        int[] needing = new int[128];
+        String res = "";
+        t.chars().forEach(c -> needing[c]++);
         while (end < s.length()) {
-            final char c1 = s.charAt(end);
-            if (dp.containsKey(c1)) {
-                if (dp.get(c1) > 0)
-                    counter--;
-                dp.put(c1, dp.getOrDefault(c1, 0) - 1);
+            char ch = s.charAt(end);
+            having[ch]++;
+            end++;
+            if (needing[ch] > 0 && having[ch] <= needing[ch]) {
+                have++;
             }
+            while (have == need) {
+                if (res.length() > end - start || res.length() == 0)  {
+                    res = s.substring(start, end);
+                }
+                char sch = s.charAt(start++);
+                having[sch]--;
+                if (needing[sch] > 0 && having[sch] < needing[sch])
+                    have--;
+            }
+        }
+        return res;
+    }
+
+    public static String minWindowUsingTemplate(String s, String t) {
+        if (s.equals(t))
+            return t;
+        int start = 0, end = 0, counter = t.length();
+        int[] dp = new int[128];
+        String res = "";
+        t.chars().forEach(c -> dp[c]++);
+        while (end < s.length()) {
+            char ch = s.charAt(end);
+            if (dp[ch] > 0) {
+                counter--;
+            }
+            dp[ch]--;
             end++;
             while (counter == 0) {
-                if (minLen > end - start) {
-                    minLen = end - start;
-                    minStart = start;
+                if (res.length() > end - start || res.length() == 0)  {
+                    res = s.substring(start, end);
                 }
-                final char c2 = s.charAt(start);
-                if (dp.containsKey(c2)) {
-                    dp.put(c2, dp.getOrDefault(c2, 0) + 1);
-                    if (dp.get(c2) > 0)
-                        counter++;
-                }
-                start++;
+                char sch = s.charAt(start++);
+                dp[sch]++;
+                if (dp[sch] > 0)
+                    counter++;
             }
         }
-
-        return minLen == Integer.MAX_VALUE ? "" : s.substring(minStart, minStart + minLen);
+        return res;
     }
 
     public static void main(String[] args) {
-        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
+        System.out.println(minWindowUsingTemplate("ADOBECODEBANC", "ABC"));
     }
 }

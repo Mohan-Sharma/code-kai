@@ -10,8 +10,8 @@ public class RemoveNthNodeFromEnd {
     private int counter;
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        //return removeRecursively(head, n);
-        return removeTwoPointerIteratively(head, n);
+        return removeRecursively(head, n);
+        //return removeTwoPointerIteratively(head, n);
     }
 
     private static ListNode removeTwoPointerIteratively(ListNode head, int n) {
@@ -51,15 +51,15 @@ public class RemoveNthNodeFromEnd {
 
     public static void main(String[] args) {
         ListNode one = new ListNode(1);
-        ListNode two = new ListNode(2);
-        ListNode three = new ListNode(3);
-        ListNode four = new ListNode(4);
-        ListNode five = new ListNode(5);
-        one.next = two;
-        two.next = three;
-        three.next = four;
-        four.next = five;
-        ListNode result = new RemoveNthNodeFromEnd().removeNthFromEnd(one, 2);
-        System.out.println(result.val);
+        //ListNode two = new ListNode(2);
+        //ListNode three = new ListNode(3);
+        //ListNode four = new ListNode(4);
+        //ListNode five = new ListNode(5);
+        //one.next = two;
+        //two.next = three;
+        //three.next = four;
+        //four.next = five;
+        ListNode result = new RemoveNthNodeFromEnd().removeNthFromEnd(one, 1);
+        System.out.println(result);
     }
 }
