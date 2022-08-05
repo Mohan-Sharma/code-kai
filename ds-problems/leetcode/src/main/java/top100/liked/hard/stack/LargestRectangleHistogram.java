@@ -22,6 +22,13 @@ public class LargestRectangleHistogram {
         return maxArea;
     }
 
+    // think of it as if the current height is > previous height means there is a possibility
+    // of increasing area but if less then calculate the previous height area then next to previous
+    // and so on. e.g [3, 1, 2, 3, 4, 1] so when we reach 1st index we calculate 3 * (1th - 0th) index but
+    // when we come to 2 area can be increased in future we are not sure yet so push to ds but
+    // when we reach 5th index, 4 height cannot be expanded horizontally anymore, so start calculating
+    // prev height area. So first it should be 4 * (5th - 4th) then 3 * (5th - 3rd) index and so on until
+    // the ds is empty. Since we required the LIFO elements hence stack
     public int largestRectangleArea(int[] heights) {
         int maxArea = 0;
         Stack<Integer> stack = new Stack<>();

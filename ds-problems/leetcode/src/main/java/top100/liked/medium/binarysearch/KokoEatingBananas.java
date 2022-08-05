@@ -1,6 +1,6 @@
 package top100.liked.medium.binarysearch;
 
-import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * @author Mohan Sharma
@@ -38,10 +38,11 @@ public class KokoEatingBananas {
     }
 
     private int getMaxPile(int[] piles) {
-        return Arrays.stream(piles).max().getAsInt();
+        return IntStream.of(piles).max().getAsInt();
+        //return Arrays.stream(piles).max().getAsInt();
     }
 
     public static void main(String[] args) {
-        System.out.println(new KokoEatingBananas().minEatingSpeed(new int[] {30,11,23,4,20}, 6));
+        System.out.println(new KokoEatingBananas().minEatingSpeed(new int[] {-90,11,23,4,20}, 6));
     }
 }

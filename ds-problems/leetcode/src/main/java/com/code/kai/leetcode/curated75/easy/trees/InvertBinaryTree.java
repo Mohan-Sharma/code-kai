@@ -30,12 +30,12 @@ public class InvertBinaryTree {
             TreeNode node = q.poll();
             TreeNode left = node.left;
             TreeNode right = node.right;
-            node.left = right;
-            node.right = left;
-            if (right != null)
-                q.add(right);
             if (left != null)
                 q.add(left);
+            if (right != null)
+                q.add(right);
+            node.left = right;
+            node.right = left;
         }
         return root;
     }

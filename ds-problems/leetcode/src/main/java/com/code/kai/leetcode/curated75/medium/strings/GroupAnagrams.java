@@ -11,7 +11,7 @@ import java.util.Map;
 public class GroupAnagrams {
 
     //Brute force way would be to get a string then iterate over the remaining string check if both
-    // are anagram and store in map of list it would be O(n^3)
+    // are anagram and store in map of list it would be O(n^3) // Map<String.valueOf(chars[]), List<String>>
     // If we think through all we need is know if the content of the anagram string are similar
     // can we use hashing in such a way that even if different order characters but same count of chars
     // always give same hash, then create a hash key to group the strings

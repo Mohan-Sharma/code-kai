@@ -40,6 +40,6 @@ public class MergeTwoSortedArrays {
     }
 
     public static void main(String[] args) {
-        System.out.println(new MergeTwoSortedArrays().findMedianSortedArrays(new int[] {1, 2}, new int[] {3, 4}));
+        System.out.println(new MergeTwoSortedArrays().findMedianSortedArrays(new int[] {1, 3, 5}, new int[] {2, 4, 6}));
     }
 }

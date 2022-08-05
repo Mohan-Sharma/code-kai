@@ -17,4 +17,16 @@ public class ReverseLinkedList {
         }
         return previous;
     }
+
+    public ListNode reverseListRec(ListNode head) {
+        return helper(head, null);
+    }
+
+    public ListNode helper(ListNode current, ListNode prev) {
+        if (current == null)
+            return prev;
+        ListNode next = current.next;
+        current.next = prev;
+        return helper(next, current);
+    }
 }
