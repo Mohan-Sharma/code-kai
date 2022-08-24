@@ -8,6 +8,11 @@ import java.util.Map;
  */
 public class CopyListRandomPointer {
 
+    // Copying list can be done by iterating over the list but when we iterate over the list the cur node should be next of the prev node ideally
+    // which can be handled using a dummy node meaning if we have a dummy node with 0 value while iterating over the list, we set assume the
+    // dummy was the prev node so dummy.next = new Node(cur.val) but while iterating some of the random nodes might not yet be created since
+    // the iteration did not complete yet and random can point to any nodes before or after the cur node. Hence while we are iterating the
+    // cur node let's store the new nodes in a hash table. Now again we can iterate over the list get the random nodes from the hash and set them
     public Node copyRandomList(Node head) {
         Node dummy = new Node(0);
         Node result = dummy;

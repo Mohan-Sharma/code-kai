@@ -1,6 +1,7 @@
 package com.code.kai.leetcode.curated75.medium.graph;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -8,6 +9,27 @@ import java.util.stream.Collectors;
  * @author Mohan Sharma
  */
 public class LongestConsecutiveSequence {
+
+    public static int longestConsecutiveOneDirectionCheck(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for(int n : nums) {
+            set.add(n);
+        }
+        int best = 0;
+        // suppose input is [100, 99, 98, 97], since on first iteration 99 is present it will just skip the count and revisit again.
+        // so 100 skip the count since 99 exists, 99 skip, 98 skip then 97 since 96 does not exist start the forward count
+        // by increment by 1 until 101 is reached
+        for(int n : set) {
+            if(!set.contains(n - 1)) {
+                int m = n + 1;
+                while(set.contains(m)) {
+                    m++;
+                }
+                best = Math.max(best, m - n);
+            }
+        }
+        return best;
+    }
 
     public static int longestConsecutive(int[] nums) {
         Set<Integer> space = Arrays.stream(nums).boxed().collect(Collectors.toSet());
@@ -53,6 +75,6 @@ public class LongestConsecutiveSequence {
     }
 
     public static void main(String[] args) {
-        System.out.println(longestConsecutiveBFWithSpace(new int[] {100, 98, 99}));
+        System.out.println(longestConsecutiveOneDirectionCheck(new int[] {9, 10, 20, 19, 18, 17, 15, 14, 13, 12, 11, 0,3,7,2,5,8,4,6,0,1}));
     }
 }

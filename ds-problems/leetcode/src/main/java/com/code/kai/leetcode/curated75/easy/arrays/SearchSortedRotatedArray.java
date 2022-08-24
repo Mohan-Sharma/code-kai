@@ -7,22 +7,25 @@ public class SearchSortedRotatedArray {
 
     //[4,5,6,7,0,1,2]
     public int search(int[] nums, int target) {
-        if (nums.length == 0 || (nums.length == 1 && target != nums[0]))
+        if (nums.length == 0)
             return -1;
-        if (nums.length == 1 && target == nums[0])
-            return 0;
-        int rotatedIndex = getRotatedIndex(nums);
         int length = nums.length - 1;
-        int start = target <= nums[length] ? rotatedIndex : 0;
-        int end = target > nums[length] ? rotatedIndex : length;
+        int rotatedIndex = getRotatedIndex(nums);
+        int start = nums[length] >= target ? rotatedIndex : 0;
+        int end = nums[length] < target ? rotatedIndex : length;
+        return binarySearch(nums, start, end, target);
+    }
 
+    private int binarySearch(int[] nums, int start, int end, int target) {
+        // search will start <= end bcs end is also valid index here unlike end = len - 1;
         while (start <= end) {
             int mid = start + ((end - start) >> 1);
-            if (nums[mid] == target)
-                return mid;
-            else if (nums[mid] < target) {
+            if (nums[mid] < target)
                 start = mid + 1;
-            } else end = mid - 1;
+            else if (nums[mid] > target)
+                end = mid - 1;
+            else
+                return mid;
         }
         return -1;
     }
