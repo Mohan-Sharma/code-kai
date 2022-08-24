@@ -68,6 +68,15 @@ public class PermutationInString {
     }
 
     //O(n), n = s2.length()
+    // First count characters of s1. Then Iterate over s2 to find the window. If 1st char is found for the window which matches s1 char
+    // incr the count. Keep a track of the length of the window as it should be the size of s1 by doing (i >= s1.length). While keeping track
+    // from the front if we encounter a char which contains in the map we should decrement the count and add the car to map why bcs the char became
+    // invalid since window is invalid .e.g s1 = ac s2 = dabc first we have [(a:1, c:1)] as count then while iterating over s2, i=1, we find a
+    // so count map becomes [(a:0, c:1)] and counter becomes 1 since we found one match but when i=2 now to find the valid window we need to revert
+    // any changes we did to count map outside valid window. When i = 2, our window should be from index 1 to 2 and that we can find by checking
+    // (i >= s1.length). In this case (2 >= 2) is valid cond so we check if any character previous encountered manipulated the counter or count map
+    // e.g. when i = 3, (3 >= 2) and tracking char from outside window i = (3-2) so char at index  of s2 is 'a' which is outside valid window and
+    // manipulated counters so we decrement counter and increment count map. Hence any time the window is valid and counter == count map size is our window
    public boolean checkInclusion(String s1, String s2) {
         if (s1.length() > s2.length())
             return false;

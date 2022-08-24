@@ -3,7 +3,7 @@ package top100.liked.hard.arrays;
 /**
  * @author Mohan Sharma
  */
-public class MergeTwoSortedArrays {
+public class MedianTwoSortedArrays {
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         if (nums1.length == nums2.length && nums1.length == 0)
@@ -40,6 +40,6 @@ public class MergeTwoSortedArrays {
     }
 
     public static void main(String[] args) {
-        System.out.println(new MergeTwoSortedArrays().findMedianSortedArrays(new int[] {1, 3, 5}, new int[] {2, 4, 6}));
+        System.out.println(new MedianTwoSortedArrays().findMedianSortedArrays(new int[] {1, 3, 5}, new int[] {2, 4, 6}));
     }
 }

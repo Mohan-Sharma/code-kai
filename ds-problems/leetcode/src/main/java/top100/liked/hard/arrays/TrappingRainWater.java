@@ -29,6 +29,9 @@ public class TrappingRainWater {
         return result;
     }
 
+    // at any building to get the left high rise, we can see if adjacent left is high or previous encounter building was high
+    // and similar to get right height of a building see if adjacent right building is high or previous encounter building was high
+    // since we are measuring all buildings in the locality
     public int trapWithSpace(int[] height) {
         int result = 0;
         if (height.length == 0)

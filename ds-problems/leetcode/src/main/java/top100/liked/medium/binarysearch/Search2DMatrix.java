@@ -29,7 +29,7 @@ public class Search2DMatrix {
         return false;
     }
 
-    // here timecomplexity is O(mn) where m is number of rows and n is the number of elements in a row
+    // here timecomplexity is O(mlog(n)) where m is number of rows and n is the number of elements in a row
     public boolean searchMatrixMN(int[][] matrix, int target) {
         if (matrix.length == 0)
             return false;

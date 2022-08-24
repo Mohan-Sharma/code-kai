@@ -24,13 +24,14 @@ public class LongestRepeatingCharacter {
             // when end = 2, maxCount will be 2 since dp['B'] is 1 but maxCount of previous 'A' was 2
             maxCount = Math.max(maxCount, dp[ch]);
             // if length at this point of iteration: ((end - start) - max count of any char) > k
-            // means the string is no longer eligble to count longest repeating char string, so we
+            // means the string is no longer eligible to count longest repeating char string, so we
             // might need to push out some char from the front to make it eligible again
             if (end - start - maxCount > k) {
                 int leftMostChar = s.charAt(start++) - 'A';
                 dp[leftMostChar]--;
                 // since maxLength == maxCount + k so finding maxLength basically is the same as finding maxCount.
                 // Hence, it won't impact the ans even if maxCount is not reduced, so we don't have decrease maxCount when start++.
+                // bcs decreasing does not impact ans but increasing maxCount does
             }
             maxLen = Math.max(maxLen, end - start);
         }
@@ -38,6 +39,6 @@ public class LongestRepeatingCharacter {
     }
 
     public static void main(String[] args) {
-        System.out.println(characterReplacement("AABABB", 1));
+        System.out.println(characterReplacement("AABABAA", 1));
     }
 }

@@ -5,7 +5,7 @@ package top100.liked.medium.linkedlist;
  */
 public class FindDuplicate {
 
-    // since the array contains n+1 elements in the range of 1..n
+    // nums.length == n + 1 since the array contains n+1 elements in the range of 1..n
     // e.g. if no. of elements is 5 array will contain elements from 1 to 4. So we can use the element as index of the array
     // use the num as index so that we make the value as -ve. Hence let's say 2 repeats so at index 2 we will make
     // the value -ve first them then next time when 2 comes again it already -ve so 2 is the duplicate
