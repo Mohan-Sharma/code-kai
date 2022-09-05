@@ -14,7 +14,7 @@ public class ConstructBinaryTreeFromInPreOrder {
     }
 
     private static TreeNode buildTreeRecursively(int preStart, int inStart, int inEnd, int[] preorder, int[] inorder) {
-        if (preStart>preorder.length || inStart > inEnd)
+        if (preStart >= preorder.length || inStart > inEnd)
             return null;
         int rootVal = preorder[preStart];
         TreeNode root = new TreeNode(rootVal);
