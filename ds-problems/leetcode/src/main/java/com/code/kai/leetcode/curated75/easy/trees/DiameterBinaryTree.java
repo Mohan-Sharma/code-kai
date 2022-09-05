@@ -5,7 +5,7 @@ package com.code.kai.leetcode.curated75.easy.trees;
  */
 public class DiameterBinaryTree {
 
-    // depth is basically sum of maxLeft and maxRight subtree excluding the root
+    // diameter is basically sum of maxLeft and maxRight subtree excluding the root
     public int diameterOfBinaryTree(TreeNode root) {
         int[] result = new int[1];
         depthRecursively(root, result);

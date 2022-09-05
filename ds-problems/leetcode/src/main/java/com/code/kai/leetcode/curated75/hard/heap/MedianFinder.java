@@ -47,7 +47,7 @@ public class MedianFinder {
         int largeSize = large.size();
 
         if (smallSize - largeSize == 0 && !small.isEmpty())
-            return (double)(small.peek() + large.peek())/2;
+            return (small.peek() + large.peek())/2d;
         else if (smallSize > largeSize)
             return small.peek();
         else if (largeSize > smallSize)
