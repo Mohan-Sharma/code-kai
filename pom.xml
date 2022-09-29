@@ -21,6 +21,7 @@
 		<module>common-dependencies</module>
         <module>cashbackengine</module>
         <module>itext-tutorial</module>
+        <module>command-pattern</module>
     </modules>
 
 	<properties>

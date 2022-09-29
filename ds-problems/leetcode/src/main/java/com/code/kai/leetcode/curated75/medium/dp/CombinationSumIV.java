@@ -3,7 +3,7 @@ package com.code.kai.leetcode.curated75.medium.dp;
 /**
  * @author Mohan Sharma
  */
-public class CombinationSum {
+public class CombinationSumIV {
     public static int combinationSum4(int[] nums, int target) {
         return combinationSumBottomUp(nums, target, new int[target + 1]);
     }
