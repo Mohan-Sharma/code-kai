@@ -1,7 +1,8 @@
-package com.code.kai.command.pattern.rest.dto;
+package com.code.kai.command.pattern.rest.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -10,9 +11,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class SaveUserRequest {
-
+@NoArgsConstructor
+public class UserForm {
     private String name;
     private String job;
-
 }

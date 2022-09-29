@@ -1,4 +1,4 @@
-package com.code.kai.command.pattern.rest.commands;
+package com.code.kai.command.pattern.common;
 
 import com.google.common.reflect.TypeToken;
 import java.net.URI;
@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @author Mohan Sharma
  */
-public abstract class AbstractConcurRestCommand<REQUEST, RESPONSE> implements RestCommand<REQUEST, RESPONSE> {
+public abstract class AbstractRestCommand<REQUEST, RESPONSE> implements RestCommand<REQUEST, RESPONSE> {
 
     private String endpointUrl;
 

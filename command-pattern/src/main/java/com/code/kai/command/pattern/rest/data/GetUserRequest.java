@@ -1,4 +1,4 @@
-package com.code.kai.command.pattern.rest.dto;
+package com.code.kai.command.pattern.rest.data;
 
 import lombok.Getter;
 import lombok.Setter;

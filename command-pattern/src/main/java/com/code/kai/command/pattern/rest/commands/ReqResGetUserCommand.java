@@ -1,7 +1,8 @@
 package com.code.kai.command.pattern.rest.commands;
 
-import com.code.kai.command.pattern.rest.dto.GetUserRequest;
-import com.code.kai.command.pattern.rest.dto.GetUserResponse;
+import com.code.kai.command.pattern.common.AbstractRestCommand;
+import com.code.kai.command.pattern.rest.data.GetUserRequest;
+import com.code.kai.command.pattern.rest.data.GetUserResponse;
 import java.net.URI;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * @author Mohan Sharma
  */
 @Component
-public class ReqResGetUserCommand extends AbstractConcurRestCommand<GetUserRequest, GetUserResponse> {
+public class ReqResGetUserCommand extends AbstractRestCommand<GetUserRequest, GetUserResponse> {
 
     @Value("${req.res.get.user.url}")
     private String endpointUrl;

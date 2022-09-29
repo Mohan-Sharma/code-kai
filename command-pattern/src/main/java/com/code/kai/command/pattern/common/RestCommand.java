@@ -1,4 +1,4 @@
-package com.code.kai.command.pattern.rest.commands;
+package com.code.kai.command.pattern.common;
 
 public interface RestCommand<REQUEST, RESPONSE> {
 
