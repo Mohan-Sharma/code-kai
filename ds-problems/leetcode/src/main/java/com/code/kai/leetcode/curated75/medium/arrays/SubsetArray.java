@@ -39,15 +39,19 @@ public class SubsetArray {
         }
     }
 
+    // if i = 1 then 001 and j when 0, 1<<j = 001, 001 & 001 > 0 so add nums[j] to subset. Again when i = 3 [011], j=0
+    // then 1 << j = 001. So 011 & 001 > 0 add to subset. then j becomes 1, 1 << j= 010 so 011 & 010 > 0, add to subset.
     public static List<List<Integer>> generateSubArraysUsingBinary(int[] nums) {
         int noOfSubsets = 1<<nums.length;
         final List<List<Integer>> subsets = new ArrayList<>(noOfSubsets);
         for (int i = 0; i < noOfSubsets; i++)
         {
             final List<Integer> subset = new ArrayList<>();
-            for (int j = 0; j < nums.length; j++) {
-                if ((i & (1 << j)) > 0)
-                    subset.add(nums[j]);
+            if (i > 0) {
+                for (int j = 0; j < nums.length; j++) {
+                    if ((i & (1 << j)) > 0)
+                        subset.add(nums[j]);
+                }
             }
             subsets.add(subset);
         }
