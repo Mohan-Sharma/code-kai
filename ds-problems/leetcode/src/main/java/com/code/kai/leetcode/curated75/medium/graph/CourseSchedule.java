@@ -12,6 +12,8 @@ import java.util.Set;
 /**
  * @author Mohan Sharma
  */
+// Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge
+// u v, vertex u comes before v in the ordering. Topological Sorting for a graph is not possible if the graph is not a DAG.
 public class CourseSchedule {
 
     // Problem: Basically problem courses with number from 0 to n-1 and dependencies among the numbered courses and
@@ -20,8 +22,8 @@ public class CourseSchedule {
     // are dependent on other courses meaning we need a dependent map<Dependent, Dependencies>. Now start for each number
     // course and check if it can be taken. It can be taken only if all the dependencies can be taken and so on..
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        //return canFinishCourseDFS(prerequisites);
-        return canFinishCourseBFS(numCourses, prerequisites);
+        return canFinishCourseDFS(prerequisites);
+        //return canFinishCourseBFS(numCourses, prerequisites);
     }
 
     private boolean canFinishCourseDFS(int[][] prerequisites) {
@@ -30,6 +32,8 @@ public class CourseSchedule {
         for (int[] coursePrerequisite : prerequisites) {
             List<Integer> allPrerequisites = courseDependencies.getOrDefault(coursePrerequisite[1], new ArrayList<>());
             allPrerequisites.add(coursePrerequisite[0]);
+            // assuming I will take coursePrerequisite[1] first, then I can iterate over the adjacent to check
+            // if they can also be taken. Hence adjacent matrix is create like Map<coursePrerequisite[1], List of(coursePrerequisite[0])>
             courseDependencies.put(coursePrerequisite[1], allPrerequisites);
         }
 
@@ -65,6 +69,8 @@ public class CourseSchedule {
     }
 
     // Solution: Kahn's Topological sort
+    // Why? while performing TS, we keep the count of sorted vertices. Now if the count of sorted vertices == number of courses
+    // then yes all courses can be taken otherwise can't be taken since there was cycle and in-degree did not become 0 for it.
     private boolean canFinishCourseBFS(int courses, int[][] prerequisites) {
 
         // create adjacency matrix

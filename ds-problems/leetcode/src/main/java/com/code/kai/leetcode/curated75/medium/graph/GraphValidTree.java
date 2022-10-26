@@ -11,6 +11,8 @@ import java.util.Set;
  * @author Mohan Sharma
  */
 // Algo: all nodes are connected and non-cyclic
+// Cyclic can tested using 3 methods -
+// 1. If no of nodes = no of edges + 1, it's cyclic 2. Using Union Find 3. Using visited set
 public class GraphValidTree {
 
     // easy way to check non-cyclic is no of nodes always equals no of edges + 1
@@ -44,6 +46,52 @@ public class GraphValidTree {
         }
     }
 
+
+    // at first assume we have all disconnected elements meaning we have n components. Now using the edge join the components using union find
+    // if already joined means have same parent already so cyclic. Whenever you join decrement component e.g. we have 1, 2, 3 initially we have 3 components, when 1 -> 2
+    // joined there will be 2 components one with 1->2 and other 3. So at the end if not cyclic return components == 1
+    public boolean validTreeUnionFind(int n, int[][] edges) {
+        int[] rank = new int[n];
+        int[] parent = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            rank[i] = 1;
+            parent[i] = i;
+        }
+        int connectedComponents = n;
+        for (int[] edge : edges) {
+            if (!unionFind(edge[0], edge[1], parent, rank)) {
+                return false;
+            } else
+                connectedComponents--;
+        }
+        return connectedComponents == 1;
+    }
+
+    private boolean unionFind(int one, int two, int[] parent, int[] rank) {
+        int parentOne = findParent(one, parent);
+        int parentTwo = findParent(two, parent);
+        if (parentOne == parentTwo)
+            return false;
+        if (rank[parentTwo] <= rank[parentOne]) {
+            parent[parentTwo] = parentOne;
+            rank[parentOne] += rank[parentTwo];
+        } else {
+            parent[parentOne] = parentTwo;
+            rank[parentTwo] += rank[parentOne];
+        }
+        return true;
+    }
+
+    private int findParent(int node, int[] parent) {
+        int p = node;
+        while (p != parent[p]) {
+            parent[p] = parent[parent[p]];
+            p = parent[p];
+        }
+        return p;
+    }
+
     // since graph is undirected we are creating list from both end b/c [0, 1] and [1, 0]
     // in this case is not cyclic unless we are give edges as [[0, 1][1, 0]] b/c here n = 2
     // and edges is 2 so 2+1 != 2 hence cyclic
@@ -61,14 +109,37 @@ public class GraphValidTree {
         return space;
     }
 
-    public static boolean validTree(int n, int[][] edges) {
-        Map<Integer, List<Integer>> adjacencyList = adjacencyList(edges);
+    // Idea is to check that the graph is acyclic plus populate the visited set.
+    // We know it is acyclic when a visited node does not come again and if visited size == n, means all
+    // nodes can be reached hence connected so it is a tree.
+    /*
+             2
+             |
+        0 -- 1 -- 3
+             |
+             4
+     */
+    // To check acyclic? We can start with zero node and assume its parent is -1. Next do a dfs
+    // for all adjacent nodes e.g. for node 1 parent is 0 so for all 1's adjacent node parent will still be 0
+    // now in case of undirected graph 0's adj is 1 and 1's adj is 0 so how do we ignore this?
+    // Now in the current recursion parent is 0 and current node is 1 so for all adjacent node of 1 parent is 0
+    // so if parent == neighbor we continue assuming its due to undirected graph thing(we came down from this branch)
+    // but if neighbor contains in visited set(could have reached from some other branch) means there is a cycle
+    public boolean validTree(int n, int[][] edges) {
+        List<List<Integer>> adjacencyList = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            adjacencyList.add(new ArrayList<>());
+        }
+        for (int[] edge : edges) {
+            adjacencyList.get(edge[0]).add(edge[1]);
+            adjacencyList.get(edge[1]).add(edge[0]);
+        }
         Set<Integer> visited = new HashSet<>();
         // isNonCyclic && all nodes connected(if all nodes are connected no of visited nodes will be equal to n)
         return isNonCyclic(0, -1, visited, adjacencyList) && n == visited.size();
     }
 
-    private static boolean isNonCyclic(int current, int parent, Set<Integer> visited, Map<Integer, List<Integer>> adjacencyList) {
+    private boolean isNonCyclic(int current, int parent, Set<Integer> visited, List<List<Integer>> adjacencyList) {
         visited.add(current);
         for (int neighbor : adjacencyList.get(current)) {
             if (neighbor == parent)
@@ -82,6 +153,6 @@ public class GraphValidTree {
     }
 
     public static void main(String[] args) {
-        System.out.println(new GraphValidTree(). validTreeEasyWay(5, new int[][]{{0, 1}, {1, 2}, {2, 3}, {1, 3}, {1, 4}}));
+        System.out.println(new GraphValidTree(). validTree(5, new int[][]{{0, 1}, {1, 2}, {1, 3}, {1, 4}}));
     }
 }

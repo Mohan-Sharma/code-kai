@@ -8,10 +8,10 @@ import java.util.List;
  */
 public class SurroundedRegions {
 
-    // Problems says - capture all regions and convert o to x and return the board.
-    // Here a regions is valid is o's are surrounded by x in 4 sides up, down, left, right.
-    // So the solution would be to find invalid areas near to border and mark all the connected one's
-    // left,down, up, right. So the left out is the ans
+    // Problems says - capture all valid regions (a region is valid if the group/single O is surrounded by X in 4 directions: up, down, left, right)
+    // and then replace O with X for these valid regions and return the board.
+    // So the solution would be to find invalid areas(anything on the border or not surrounded by X in all 4 directions) and mark all the connected one's
+    // left, down, up, right. So the left out is the ans
     public void solve(char[][] board) {
         int rows = board.length, cols = board[0].length;
 
@@ -58,7 +58,7 @@ public class SurroundedRegions {
     }
 
     public static void main(String[] args) {
-        char[][] board = new char[][]{{'X','X','X','X'},{'X','X','O','X'},{'O','O','X','X'},{'X','X','X','X'}};
+        char[][] board = new char[][]{{'X','X','X','X'},{'X','X','X','X'},{'X','O','X','X'},{'X','O','X','X'}};
         new SurroundedRegions().solve(board);
 
         System.out.println(Arrays.deepToString(board));
