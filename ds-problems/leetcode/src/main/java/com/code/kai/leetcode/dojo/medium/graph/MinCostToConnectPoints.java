@@ -16,6 +16,13 @@ Minimum spanning tree: Given weighted graph, when we can convert the graph into 
 and n-1 edges and every node is reachable by any other node(all nodes are connected) and the cost of edge weight(sum of all weighted edges) is minimal it is called MST
 Solution: Prims Algo
 
+    put the starting node (node = 0, weight = 0) in minHeap
+    iterate while all nodes visited
+        pop from minHeap which gives the nearest node
+        if not visited, increment sum of weight
+        iterate all adjacent node
+            if node not visited put to min heap (node = val, weight = distance to adj Node)
+
 Minimum Spanning Tree vs Single Source Shortest Path: refer - MSTvSSSP.png
  */
 public class MinCostToConnectPoints {
