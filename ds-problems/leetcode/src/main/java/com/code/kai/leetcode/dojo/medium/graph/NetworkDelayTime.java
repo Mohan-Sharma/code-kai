@@ -37,6 +37,11 @@ public class NetworkDelayTime {
             int nodeValue = node[0];
             if (!visited.contains(nodeValue)) {
                 visited.add(nodeValue);
+                // in dijkstra we keep a distance arr where from a source node, we maintain
+                // the shortest distance to each node. But for this question we need the minimum
+                // delay time means the node with the highest distance to reach would have
+                // covered all other nodes. So instead of iterating over the distance arr to find the max
+                // we maintain a max variable which gets updated after each node visit with the max value
                 delay = Math.max(delay, node[1]);
                 for (int[] neighbor : adjMatrix.get(nodeValue)) {
                     if (!visited.contains(neighbor[0]))
@@ -61,6 +66,6 @@ public class NetworkDelayTime {
     }
 
     public static void main(String[] args) {
-        System.out.println(new NetworkDelayTime().networkDelayTime(new int[][] {{1, 2, 1}}, 2, 1));
+        System.out.println(new NetworkDelayTime().networkDelayTime(new int[][] {{2, 1, 1}, {2, 3, 2}, {3, 4, 1}}, 4, 2));
     }
 }
