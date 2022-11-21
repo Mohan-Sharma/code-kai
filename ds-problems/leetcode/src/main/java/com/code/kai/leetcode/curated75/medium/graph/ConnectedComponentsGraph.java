@@ -1,6 +1,7 @@
 package com.code.kai.leetcode.curated75.medium.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,8 @@ import java.util.stream.IntStream;
  */
 public class ConnectedComponentsGraph {
 
+    // Union Find: Grouping of disjoint sets based on certain condition. Can also be used to find how many groups
+    // or if 2 objects belongs to same group
     // Why union find: initially we have n node, and we need to check how many are connected
     // which means we need to do union of nodes but union can be done on some criteria that's
     // where find comes in to check the parent of the 2 nodes on which union will be done
@@ -25,6 +28,7 @@ public class ConnectedComponentsGraph {
                 count--;
             }
         }
+        System.out.println(Arrays.toString(parent));
         return count;
     }
 
