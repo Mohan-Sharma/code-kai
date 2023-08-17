@@ -1,6 +1,6 @@
 package com.code.kai.leetcode.dojo.hard.dp;
 
-import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * @author Mohan Sharma
@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class PartitionArrayMinimumSumDifference {
 
     public int minimumDifference(int[] nums) {
-        int total = Arrays.stream(nums).sum();
+        int total = IntStream.of(nums).sum();
         boolean[][] dp = new boolean[nums.length][total + 1];
         populateDPArray(nums, dp, total);
         int min = Integer.MAX_VALUE;

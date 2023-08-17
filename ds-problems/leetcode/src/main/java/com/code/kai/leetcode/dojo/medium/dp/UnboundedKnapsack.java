@@ -18,9 +18,9 @@ public class UnboundedKnapsack {
 
     private static int unboundedKnapsackBottomUp(int index, int maxWeight, int[] profit, int[] weight) {
         if (index == 0) {
-            if (maxWeight % weight[0] == 0)
-                return profit[0] * (maxWeight / weight[0]);
-            return Integer.MIN_VALUE;
+            // since / operator always give int result e.g. mw is 8 and 0 index weight is 3 I can take 2 items of 3 weight means 8/3 = 2
+            // if fraction had been allowed then I would have taken 8/3 + (8%3)/3 = 2.66
+            return profit[0] * (maxWeight / weight[0]);
         }
 
         int notPick = unboundedKnapsackBottomUp(index - 1, maxWeight, profit, weight);
@@ -53,15 +53,15 @@ public class UnboundedKnapsack {
     private static int unboundedKnapsackTabulation(int len, int maxWeight, int[] profit, int[] weight) {
         int[][] dp = new int[len][maxWeight + 1];
         for (int i = 0; i <= maxWeight; i++) {
-            dp[0][i] = profit[0] * (i / weight[0]);
+            if (i % weight[0] == 0)
+                dp[0][i] = profit[0] * (i / weight[0]);
         }
         for (int i = 1; i < len; i++) {
             for (int j = 0; j <= maxWeight; j++) {
                 int notPick = dp[i - 1][j];
                 int pick = Integer.MIN_VALUE;
                 if (j >= weight[i]) {
-                    int max = dp[i][j - weight[i]];
-                    pick = max != Integer.MIN_VALUE ? max + profit[i] : max;
+                    pick= dp[i][j - weight[i]]+ profit[i];
                 }
                 dp[i][j]= Math.max(pick, notPick);
             }
@@ -115,6 +115,6 @@ public class UnboundedKnapsack {
     }
 
     public static void main(String[] args) {
-        System.out.println(unboundedKnapsackTabulationSpaceOptimizedFurther(5, 13, new int[] {7, 9, 1, 3, 10}, new int[] {5, 5, 7, 7, 7}));
+        System.out.println(unboundedKnapsackTabulation(5, 13, new int[] {7, 9, 1, 3, 10}, new int[] {5, 5, 7, 7, 7}));
     }
 }

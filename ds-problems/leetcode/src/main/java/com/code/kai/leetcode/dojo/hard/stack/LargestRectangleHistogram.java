@@ -1,5 +1,7 @@
 package com.code.kai.leetcode.dojo.hard.stack;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 /**
@@ -46,7 +48,24 @@ public class LargestRectangleHistogram {
         return maxArea;
     }
 
+    // faster than stack
+    public int largestRectangleAreaDeque(int[] heights) {
+        int maxArea = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i <= heights.length; ) {
+            int curHeight = i == heights.length ? Integer.MIN_VALUE : heights[i];
+            if (stack.isEmpty() || heights[stack.peek()] <= curHeight) {
+                stack.push(i++);
+            } else {
+                int height = heights[stack.pop()];
+                int index = stack.isEmpty() ? 0 : stack.peek() + 1;
+                maxArea = Math.max(maxArea, height * (i - index));
+            }
+        }
+        return maxArea;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new LargestRectangleHistogram().largestRectangleArea(new int[] {2,4}));
+        System.out.println(new LargestRectangleHistogram().largestRectangleAreaDeque(new int[] {2,1,2}));
     }
 }

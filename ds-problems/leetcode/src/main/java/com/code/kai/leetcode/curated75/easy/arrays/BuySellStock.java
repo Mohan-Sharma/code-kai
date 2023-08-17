@@ -3,6 +3,7 @@ package com.code.kai.leetcode.curated75.easy.arrays;
 public class BuySellStock {
 
     /*
+        Problem: You can buy or sell only once. Meaning we should try to buy at min price and sell at highest price and find the max profit
         Solution: Let's say we purchased on the first day. Profit can be made only if selling price is greater than min purchased price.
         And as we move along keep track of min price
      */

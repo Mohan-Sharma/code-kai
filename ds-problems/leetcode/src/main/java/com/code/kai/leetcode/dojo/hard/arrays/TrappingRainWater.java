@@ -34,23 +34,26 @@ public class TrappingRainWater {
     // since we are measuring all buildings in the locality
     public int trapWithSpace(int[] height) {
         int result = 0;
-        if (height.length == 0)
+        int length = height.length;
+        if (length == 0)
             return result;
-        int[] leftBoundary = new int[height.length];
+        int[] leftBoundary = new int[length];
         int maxLeft = height[0];
-        for (int i = 1; i < height.length; i++) {
+        for (int i = 1; i <= length; i++) {
             leftBoundary[i - 1] = Math.max(height[i - 1], maxLeft);
-            maxLeft = Math.max(maxLeft, height[i]);
+            if (i < length)
+                maxLeft = Math.max(maxLeft, height[i]);
         }
 
-        int[] rightBoundary = new int[height.length];
-        int maxRight = height[height.length - 1];
-        for (int i = height.length - 2; i >= 0; i--) {
+        int[] rightBoundary = new int[length];
+        int maxRight = height[length - 1];
+        for (int i = length - 2; i >= -1; i--) {
             rightBoundary[i + 1] = Math.max(height[i + 1], maxRight);
-            maxRight = Math.max(maxRight, height[i]);
+            if (i > -1)
+                maxRight = Math.max(maxRight, height[i]);
         }
 
-        for (int i = 0; i < height.length; i++) {
+        for (int i = 0; i < length; i++) {
             int water = Math.min(leftBoundary[i], rightBoundary[i]) - height[i];
             if (water > 0) {
                 result += water;
@@ -60,6 +63,6 @@ public class TrappingRainWater {
     }
 
     public static void main(String[] args) {
-        System.out.println(new TrappingRainWater().trap(new int[]{4,2,0,3,2,5}));
+        System.out.println(new TrappingRainWater().trapWithSpace(new int[]{0,1,0,2,1,0,1,3,2,1,2,1}));
     }
 }

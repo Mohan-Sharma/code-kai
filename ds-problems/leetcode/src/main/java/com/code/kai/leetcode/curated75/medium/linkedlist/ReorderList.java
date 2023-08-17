@@ -8,14 +8,14 @@ import com.code.kai.leetcode.curated75.easy.linkedlist.ListNode;
 public class ReorderList {
 
     public void reorderList(ListNode head) {
-        ListNode walker = head, runner = head, firstHalf = null;
+        ListNode walker = head, runner = head, prev = null;
         while (runner != null && runner.next != null) {
-            firstHalf = walker;
+            prev = walker;
             walker = walker.next;
             runner = runner.next.next;
         }
 
-        firstHalf.next = null; // cut off the list into 2 halves
+        prev.next = null; // cut off the list into 2 halves
         ListNode secondHalf = reverseList(walker);
         mergeLists(head, secondHalf);
     }
@@ -46,6 +46,26 @@ public class ReorderList {
         return prev;
     }
 
+    public void reorderListAnotherWay(ListNode head) {
+        ListNode walker = head, runner = head;
+        while (runner != null && runner.next != null) {
+            walker = walker.next;
+            runner = runner.next.next;
+        }
+        ListNode second = walker.next;
+        walker.next = null;
+        second = reverseList(second);
+
+        while (head != null && second != null) {
+            ListNode fn = head.next;
+            ListNode sn = second.next;
+            head.next = second;
+            head.next.next = fn;
+            head = fn;
+            second = sn;
+        }
+    }
+
     public static void main(String[] args) {
         ListNode one = new ListNode(1);
         ListNode two = new ListNode(2);
@@ -55,7 +75,8 @@ public class ReorderList {
         one.next = two;
         two.next = three;
         three.next = four;
-        new ReorderList().reorderList(one);
-        System.out.println(one);
+        four.next = five;
+        new ReorderList().reorderListAnotherWay(one);
+        one.print();
     }
 }

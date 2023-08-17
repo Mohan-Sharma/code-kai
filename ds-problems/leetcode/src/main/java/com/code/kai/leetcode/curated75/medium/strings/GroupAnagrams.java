@@ -28,7 +28,7 @@ public class GroupAnagrams {
                 chars[c - 'a']++;
             }
 
-            String key = String.valueOf(chars);
+            String key = chars.toString();
             List<String> anagrams = space.getOrDefault(key, new ArrayList<>());
             anagrams.add(word);
             space.put(key, anagrams);

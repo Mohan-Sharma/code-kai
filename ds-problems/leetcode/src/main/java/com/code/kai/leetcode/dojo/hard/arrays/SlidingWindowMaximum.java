@@ -16,10 +16,12 @@ public class SlidingWindowMaximum {
 
         while (end < nums.length) {
             // remove from head the elements where size of queue > k
+            // or in other words, we can maintain at max window of size k i.e. currentEndIndex - k gives the start of window + 1 since 0 index based
+            // so end - k + 1, so anything smaller than this start index remove
             while (!q.isEmpty() && q.peek() < end - k + 1) {
                 q.poll();
             }
-            // at any point of time maintain a decreasing order of at max k elements
+            // at any point of time maintain a decreasing order of at max k elements e.g. if arr [1 , 2] AD = [2]
             while (!q.isEmpty() && nums[q.peekLast()] < nums[end]) {
                 q.pollLast();
             }
@@ -36,7 +38,7 @@ public class SlidingWindowMaximum {
     }
 
     public static void main(String[] args) {
-        int[] result = new SlidingWindowMaximum().maxSlidingWindow(new int[] {1,3,1,2,0,5}, 3);
+        int[] result = new SlidingWindowMaximum().maxSlidingWindow(new int[] {1,3, -1, -3, 0,5}, 3);
         System.out.println(Arrays.toString(result));
     }
 }

@@ -39,8 +39,7 @@ public class FrogKJumps {
                 min = Math.min(min, val);
             }
         }
-        dp[index] = min;
-        return min;
+        return dp[index] = min;
     }
 
     /*

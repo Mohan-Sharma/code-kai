@@ -16,15 +16,15 @@ public class RodCuttingMaxProfit {
         return cutRodBottomUpMemoization(price, n - 1, n, dp);
     }
 
-    private static int cutRodBottomUp(int[] price, int index, int max) {
+    private static int cutRodBottomUp(int[] price, int index, int rodLen) {
         if (index == 0) {
-            return price[0] * max;
+            return price[0] * rodLen;
         }
 
-        int notCut = cutRodBottomUp(price, index - 1, max);
+        int notCut = cutRodBottomUp(price, index - 1, rodLen);
         int cut = Integer.MIN_VALUE;
-        if (max >= index + 1)
-            cut = price[index] + cutRodBottomUp(price, index, max - (index + 1));
+        if (rodLen >= index + 1)
+            cut = price[index] + cutRodBottomUp(price, index, rodLen - (index + 1));
         return Math.max(cut, notCut);
     }
 

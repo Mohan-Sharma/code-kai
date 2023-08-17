@@ -19,7 +19,11 @@ public class ConstructBinaryTreeFromInPreOrder {
         int rootVal = preorder[preStart];
         TreeNode root = new TreeNode(rootVal);
         int indexOfRoot = IntStream.of(inorder).boxed().collect(Collectors.toList()).indexOf(rootVal);
+        // pre + 1 the next immediate val in pre sub array end does not matter whereas the inorder arr for left will be between in-start to index - 1
         root.left = buildTreeRecursively(preStart + 1, inStart, indexOfRoot - 1, preorder, inorder);
+        // we know where to cut the in-order array, so we know pre array start for right will be (pre + 1)  + (length of left in-arr)
+        // preorder = [3,9,20,15,7], inorder = [9,3,15,20,7] e.g. when 20 is the root
+        // for left pre will always be 15 means pre + 1, but right pre we know [9, 3, 15] goes to left and [7] goes to right tree so pre = pre + 1 (length of left tree i.e. index - IStart)
         root.right = buildTreeRecursively(preStart + indexOfRoot - inStart + 1,  indexOfRoot + 1, inEnd, preorder, inorder);
         return root;
     }

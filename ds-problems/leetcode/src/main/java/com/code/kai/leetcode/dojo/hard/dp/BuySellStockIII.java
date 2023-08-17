@@ -1,5 +1,6 @@
 package com.code.kai.leetcode.dojo.hard.dp;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -13,37 +14,33 @@ import java.util.List;
 public class BuySellStockIII {
 
     public int maxProfit(int[] prices) {
-        //return maxProfitBottomUp(prices, 0, 1, 2)
-        /*int[][][] dp = new int[prices.length][2][3];
+        int[][][] dp = new int[prices.length][2][2];
         for (int[][] row : dp) {
             for (int[] cols : row) {
                 Arrays.fill(cols, -1);
             }
         }
-        return maxProfitBottomUpMemoization(prices, 0, 1, 2, dp);*/
-        return maxProfitBottomUpUsingTransactions(prices, 0, 0);
+        return maxProfitBottomUpMemoization(prices, 0, 1, 0, dp);
+        //return maxProfitBottomUpUsingTransactions(prices, 0, 0);
+        //return maxProfitBottomUp(prices, 0, 1, 0);
     }
 
     private int maxProfitBottomUp(int[] prices, int index, int eligibleToBuy, int cap) {
-        if (cap <= 0)
-            return 0;
-        if (index >= prices.length)
+        if (index >= prices.length || cap >= 2)
             return 0;
         if (eligibleToBuy == 1) {
             int buy = -prices[index] + maxProfitBottomUp(prices, index + 1, 0, cap);
             int notBuy = maxProfitBottomUp(prices, index + 1, 1, cap);
             return Math.max(buy, notBuy);
         } else {
-            int sell = prices[index] + maxProfitBottomUp(prices, index + 1, 1, cap - 1);
+            int sell = prices[index] + maxProfitBottomUp(prices, index + 1, 1, cap + 1);
             int notSell = maxProfitBottomUp(prices, index + 1, 0, cap);
             return Math.max(sell, notSell);
         }
     }
 
     private int maxProfitBottomUpMemoization(int[] prices, int index, int eligibleToBuy, int cap, int[][][] dp) {
-        if (cap <= 0)
-            return 0;
-        if (index >= prices.length)
+        if (index >= prices.length || cap >= 2)
             return 0;
         if (dp[index][eligibleToBuy][cap] != -1)
             return dp[index][eligibleToBuy][cap];
@@ -52,7 +49,7 @@ public class BuySellStockIII {
             int notBuy = maxProfitBottomUpMemoization(prices, index + 1, 1, cap, dp);
             return dp[index][eligibleToBuy][cap] = Math.max(buy, notBuy);
         } else {
-            int sell = prices[index] + maxProfitBottomUpMemoization(prices, index + 1, 1, cap - 1, dp);
+            int sell = prices[index] + maxProfitBottomUpMemoization(prices, index + 1, 1, cap + 1, dp);
             int notSell = maxProfitBottomUpMemoization(prices, index + 1, 0, cap, dp);
             return dp[index][eligibleToBuy][cap] = Math.max(sell, notSell);
         }
@@ -61,21 +58,21 @@ public class BuySellStockIII {
     private int maxProfitTabulation(int[] prices) {
         int[][][] dp = new int[prices.length + 1][2][3];
         for (int i = prices.length-1; i >= 0 ; i--) {
-            for (int eligibleToBuy : List.of(1, 0)) {
-                for (int cap : List.of(1, 2)) {
+            for (int eligibleToBuy : List.of(0, 1)) {
+                for (int cap : List.of(0, 1)) { // 2 transactions 0 based index
                     if (eligibleToBuy == 1) {
                         int buy = -prices[i] + dp[i + 1][0][cap];
                         int notBuy = dp[i + 1][1][cap];
                         dp[i][eligibleToBuy][cap] = Math.max(buy, notBuy);
                     } else {
-                        int sell = prices[i] + dp[i + 1][1][cap - 1];
+                        int sell = prices[i] + dp[i + 1][1][cap + 1];
                         int notSell = dp[i + 1][0][cap];
                         dp[i][eligibleToBuy][cap] = Math.max(sell, notSell);
                     }
                 }
             }
         }
-        return dp[0][1][2];
+        return dp[0][1][0];
     }
 
     private int maxProfitTabulationSpaceOptimized(int[] prices) {
@@ -165,6 +162,6 @@ public class BuySellStockIII {
     }
 
     public static void main(String[] args) {
-        System.out.println(new BuySellStockIII().maxProfitTabulationUsingTransactionsSpaceOptimized(new int[] {3,3,5,0,0,3,1,4}));
+        System.out.println(new BuySellStockIII().maxProfitTabulation(new int[] {3,3,5,0,0,3,1,4}));
     }
 }

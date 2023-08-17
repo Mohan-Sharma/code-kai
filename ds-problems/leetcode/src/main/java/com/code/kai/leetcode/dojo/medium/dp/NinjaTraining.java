@@ -23,6 +23,8 @@ public class NinjaTraining {
         return maxMeritPointsTopDownMemoization(points.length - 1, points[0].length, points, dp);
     }
 
+    // why not take scenario not into consideration, b/c out of 3 tasks in the first day it is mandatory to do at least one. If not take was
+    // considered there may be a case where it might not do either first or second or third task as well
     private int maxMeritPointsTopDown(int day, int prevDayActivity, int[][] points) {
         if (day == 0) {
             int max = Integer.MIN_VALUE;

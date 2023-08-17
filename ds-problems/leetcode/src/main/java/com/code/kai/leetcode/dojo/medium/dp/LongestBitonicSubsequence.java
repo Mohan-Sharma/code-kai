@@ -38,6 +38,7 @@ public class LongestBitonicSubsequence {
         }
         int result = 0;
         for (int i = 0; i < length; i++) {
+            // till index i forward[i] gives increasing till i and reverse[i] gives decreasing from i till n, hence ith element is common and taken 2 times hence take only 1 time so do a minus 1
             result = Math.max(result, Math.abs(forwardDP[i] + backwardDP[i] - 1));
         }
         return result;

@@ -12,11 +12,11 @@ public class LongestPalindromicSubsequence {
         will be aa palindromic as well but not longest.
      */
     public int longestPalindromeSubsequence(String s) {
-        String s1 = new StringBuilder(s).reverse().toString();
-        return lcs(s, s1);
+        String r = new StringBuilder(s).reverse().toString();
+        return longestCommonSubstring(s, r);
     }
 
-    private static int lcs(String s, String s1) {
+    private static int longestCommonSubsequence(String s, String s1) {
         int len1 = s.length(), len2 = s1.length();
         int[][] dp = new int[len1 + 1][len2 + 1];
 
@@ -31,7 +31,24 @@ public class LongestPalindromicSubsequence {
         return dp[len1][len2];
     }
 
+    private static int longestCommonSubstring(String s, String r) {
+        int len1 = s.length(), len2 = r.length();
+        int[][] dp = new int[len1 + 1][len2 + 1];
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i <= len1; i++) {
+            for (int j = 1; j <= len2; j++) {
+                if (s.charAt(i - 1) == r.charAt(j - 1)) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                    max = Math.max(max, dp[i][j]);
+                }
+                else
+                    dp[i][j] = 0;
+            }
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new LongestPalindromicSubsequence().longestPalindromeSubsequence("aabccbd"));
+        System.out.println(new LongestPalindromicSubsequence().longestPalindromeSubsequence("abmamaz"));
     }
 }
