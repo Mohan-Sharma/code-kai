@@ -1,9 +1,9 @@
 package com.code.kai.leetcode.curated75.medium.graph;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author Mohan Sharma
@@ -32,7 +32,7 @@ public class LongestConsecutiveSequence {
     }
 
     public static int longestConsecutive(int[] nums) {
-        Set<Integer> space = Arrays.stream(nums).boxed().collect(Collectors.toSet());
+        Set<Integer> space = IntStream.of(nums).boxed().collect(Collectors.toSet());
         int lcs = 0;
         while (!space.isEmpty()) {
             int leftPointer = space.iterator().next(), rightPointer = leftPointer + 1, count = 0;
@@ -59,22 +59,7 @@ public class LongestConsecutiveSequence {
         return lcs;
     }
 
-    //TLE error
-    public static int longestConsecutiveBFWithSpace(int[] nums) {
-        int lcs = -1;
-        Set<Integer> numbers = Arrays.stream(nums).boxed().collect(Collectors.toSet());
-        for (int i = 0; i < nums.length; i++) {
-            int count = 1, cur = nums[i] + 1;
-            while (numbers.contains(cur)) {
-                cur++;
-                count++;
-            }
-            lcs = Math.max(lcs, count);
-        }
-        return lcs;
-    }
-
     public static void main(String[] args) {
-        System.out.println(longestConsecutiveOneDirectionCheck(new int[] {9, 10, 20, 19, 18, 17, 15, 14, 13, 12, 11, 0,3,7,2,5,8,4,6,0,1}));
+        System.out.println(longestConsecutive(new int[] {9, 10, 20, 19, 18, 17, 15, 14, 13, 12, 11, 0,3,7,2,5,8,4,6,0,1}));
     }
 }

@@ -60,9 +60,9 @@ public class PermutationInString {
             chars[ch - 'a']--;
             if (i >= s1.length()) {
                 chars[s2.charAt(i - s1.length()) - 'a']++;
-                if (allZeros(chars))
-                    return true;
             }
+            if (allZeros(chars))
+                return true;
         }
         return false;
     }
@@ -113,6 +113,6 @@ public class PermutationInString {
     }
 
     public static void main(String[] args) {
-        System.out.println(new PermutationInString().checkInclusion("a", "ab"));
+        System.out.println(new PermutationInString().checkInclusions("ab", "abz"));
     }
 }

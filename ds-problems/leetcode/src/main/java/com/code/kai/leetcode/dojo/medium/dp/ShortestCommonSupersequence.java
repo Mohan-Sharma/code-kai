@@ -4,11 +4,11 @@ package com.code.kai.leetcode.dojo.medium.dp;
  * @author Mohan Sharma
  */
 /*
-    Problem given 2 strings print the longest common sequence such that all characters of both string appears in result
+    Problem given 2 strings print the shortest common sequence such that all characters of both string appears in result
     e.g. s1=brute s2=groot result=bgruoote
     Solution user print LCS logic from DP Array
  */
-public class LongestCommonSupersequence {
+public class ShortestCommonSupersequence {
 
     public static String shortestSupersequence(String text1, String text2) {
         int len1 = text1.length();

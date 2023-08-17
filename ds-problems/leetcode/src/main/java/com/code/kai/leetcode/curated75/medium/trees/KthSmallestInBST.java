@@ -27,7 +27,7 @@ public class KthSmallestInBST {
             result = root.val;
             return k;
         }
-        return helper(root.right, k);
+        return helper(root.right, k); // why not deducting here? b/c we are processing like InOrder traversal, go left -> process(decrement in this case) -> go right
     }
 
     public static int kthSmallestUsingSpace(TreeNode root, int k) {

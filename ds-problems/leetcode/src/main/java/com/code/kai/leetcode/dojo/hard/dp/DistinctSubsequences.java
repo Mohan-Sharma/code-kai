@@ -60,26 +60,29 @@ public class DistinctSubsequences {
         int len1 = s.length();
         int len2 = t.length();
         int[][] dp = new int[len1 + 1][len2 + 1];
-        for (int i = 0; i <= len1 ; i++) {
-            dp[i][0] = 1;
-        }
-        int count = 0;
-        for (int i = 1; i <= len1; i++) {
-            for (int j = 1; j <= len2; j++) {
+        for (int i = 0; i <= len1; i++) {
+            for (int j = 0; j <= len2; j++) {
+                if (j == 0) {
+                    dp[i][j] = 1;
+                    continue;
+                }
+                if (i == 0)
+                    continue;
                 if (s.charAt(i - 1) ==  t.charAt(j - 1)) {
                     // since both chars matched we will pick the char and move both index
                     int pick =  dp[i - 1][j - 1];
                     // since both chars matched we will not pick the char and see if in future some char exists which matches
                     int notPick = dp[i - 1][j];
-                    count = pick + notPick; // since sum of all subsequences
+                    dp[i][j] = pick + notPick; // since sum of all subsequences
                 } else
-                    count = dp[i - 1][j];
-                dp[i][j] = count;
+                    dp[i][j] = dp[i - 1][j];
             }
         }
         return dp[len1][len2];
     }
 
+    // if we analyse the code above we see that a present col value depends either on sum of present col dp[j] + preceeding col dp[j - 1]
+    // or present col. Hence, with one array it will work
     private int numDistinctTabulationSpaceOptimized(String s, String t) {
         int len1 = s.length();
         int len2 = t.length();
@@ -96,6 +99,6 @@ public class DistinctSubsequences {
     }
 
     public static void main(String[] args) {
-        System.out.println(new DistinctSubsequences().numDistinctTabulationSpaceOptimized("rabbbit", "rabbit"));
+        System.out.println(new DistinctSubsequences().numDistinctTabulation("babgbag", "bag"));
     }
 }

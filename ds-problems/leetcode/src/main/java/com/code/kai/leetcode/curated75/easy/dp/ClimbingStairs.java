@@ -8,6 +8,12 @@ import java.util.Arrays;
 // Classic fibonacci problem
 public class ClimbingStairs {
 
+    public int climbStairs(int n) {
+        int[] dp = new int[n+1];
+        Arrays.fill(dp, -1);
+        return climbStairsTopBottomMemoization(n, dp);
+    }
+
     /*
     Either we go 1 step or go 2 steps. Meaning two recursive branches. So let's start with top and go down
     when we reach 0 means that's 1 way to reach bottom, but sometimes we might reach less than 0, in that case
@@ -16,15 +22,15 @@ public class ClimbingStairs {
     public int climbStairsTopBottom(int n) {
         if (n == 0)
             return 1;
-        if (n < 0)
-            return 0;
-        return climbStairsTopBottom(n - 1) + climbStairsTopBottom(n - 2);
+        return climbStairsTopBottom(n - 1) + ( n > 1 ? climbStairsTopBottom(n - 2) : 0);
     }
 
-    public int climbStairsTopBottomMemoization(int n) {
-        int[] dp = new int[n+1];
-        Arrays.fill(dp, -1);
-        return climbStairsTopBottomMemoization(n, dp);
+    public int climbStairsTopBottomMemoization(int n, int[] dp) {
+        if (n == 0)
+            return 1;
+        if (dp[n] > 0)
+            return dp[n];
+        return dp[n] = climbStairsTopBottomMemoization(n - 1, dp) + ( n > 1 ? climbStairsTopBottomMemoization(n - 2, dp) : 0);
     }
 
     public int climbStairsTabulation(int n) {
@@ -52,19 +58,7 @@ public class ClimbingStairs {
         return adj;
     }
 
-    public int climbStairsTopBottomMemoization(int n, int[] dp) {
-        if (n == 0)
-            return 1;
-        if (n < 0)
-            return 0;
-        if (dp[n] > 0)
-            return dp[n];
-        int val = climbStairsTopBottomMemoization(n - 1, dp) + climbStairsTopBottomMemoization(n - 2, dp);
-        dp[n] = val;
-        return val;
-    }
-
     public static void main(String[] args) {
-        System.out.println(new ClimbingStairs().climbingStairsSpaceOptimized(2));
+        System.out.println(new ClimbingStairs().climbStairsTopBottom(3));
     }
 }

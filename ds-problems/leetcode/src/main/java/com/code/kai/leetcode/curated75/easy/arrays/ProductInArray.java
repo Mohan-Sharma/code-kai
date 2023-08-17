@@ -7,32 +7,26 @@ import java.util.Arrays;
  */
 public class ProductInArray {
     public static int[] productExceptSelf(int[] nums) {
-
+        int curProduct = 1;
         int[] prefix = new int[nums.length];
-        int[] suffix = new int[nums.length];
-
-        int current = 1;
-        prefix[0] = 1;
-        suffix[nums.length - 1] = 1;
-
-        for (int i = 1; i < nums.length; i++) {
-            current = current * nums[i - 1];
-            prefix[i] = current;
-        }
-
-        current = 1;
-        for (int i = nums.length - 2; i >= 0; i--) {
-            current = current * nums[i + 1];
-            suffix[i] = current;
-        }
-
         for (int i = 0; i < nums.length; i++) {
+            prefix[i] = curProduct;
+            curProduct *= nums[i];
+        }
+
+        curProduct = 1;
+        int[] suffix = new int[nums.length];
+        for (int i = nums.length - 1; i >= 0; i--) {
+            suffix[i] = curProduct;
+            curProduct *=  nums[i];
+            // since suffix, prefix already computed for this index why use another loop, populate it here
             nums[i] = prefix[i] * suffix[i];
         }
+
         return nums;
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(productExceptSelf(new int[] {-1,1,0,-3,3})));
+        System.out.println(Arrays.toString(productExceptSelf(new int[] {1, 2, 3, 4})));
     }
 }

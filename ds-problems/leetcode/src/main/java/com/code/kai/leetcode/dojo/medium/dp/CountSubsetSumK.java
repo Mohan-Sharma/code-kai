@@ -12,7 +12,7 @@ public class CountSubsetSumK {
         for (int[] row : dp) {
             Arrays.fill(row, -1);
         }
-        return countSubsetBottomUpMemoization(arr.length - 1, k, arr, dp);
+        return countSubsetBottomUp(arr.length - 1, k, arr);
     }
 
     private int countSubsetBottomUp(int index, int target, int[] arr) {
@@ -24,12 +24,8 @@ public class CountSubsetSumK {
             else
                 return 0;
         }
-
-        int notPick = countSubsetBottomUp(index - 1, target, arr);
-        int pick = 0;
-        if (target >= arr[index])
-            pick = countSubsetBottomUp(index - 1, target - arr[index], arr);
-        return pick + notPick;
+        return countSubsetBottomUp(index - 1, target, arr) +
+                countSubsetBottomUp(index - 1, target - arr[index], arr);
     }
 
     /* If arr is {0, 0, 1} k =1 output should be 4 {1}, {0, 1}, {0, 1} and {0, 0, 1} these will give only 1
@@ -106,6 +102,6 @@ public class CountSubsetSumK {
     }
 
     public static void main(String[] args) {
-        System.out.println(new CountSubsetSumK().countSubsetBottomUpTabulationSpaceOptimized(new int[] {0, 0, 1}, 1));
+        System.out.println(new CountSubsetSumK().countSubsetSumK(new int[] {0, 0, 1}, 1));
     }
 }

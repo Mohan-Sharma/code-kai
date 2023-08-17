@@ -1,26 +1,24 @@
 package com.code.kai.leetcode.curated75.medium.dp;
 
-import java.util.Arrays;
-
 /**
  * @author Mohan Sharma
  */
 public class UniquePaths {
 
     public static int uniquePaths(int m, int n) {
-        //return uniquePathsBottomUp(m-1, n-1);
-        int[][] dp = new int[m][n];
+        return uniquePathsBottomUp(m-1, n-1);
+        /*int[][] dp = new int[m][n];
         for (int i = 0; i < m; i++) {
             Arrays.fill(dp[i], -1);
         }
-        return uniquePathsBottomUpMemoization(m-1, n-1, dp);
+        return uniquePathsBottomUpMemoization(m-1, n-1, dp);*/
     }
 
     private static int uniquePathsBottomUp(int row, int col) {
-        if (row < 0 || col < 0)
-            return 0;
         if (row == 0 && col == 0)
             return 1;
+        if (row < 0 || col < 0)
+            return 0;
         int down = uniquePathsBottomUp(row - 1, col);
         int right = uniquePathsBottomUp(row, col - 1);
         return down + right;
@@ -75,6 +73,6 @@ public class UniquePaths {
     }
 
     public static void main(String[] args) {
-        System.out.println(uniquePathsTabulationSpaceOptimized(3, 2));
+        System.out.println(uniquePaths(3, 2));
     }
 }

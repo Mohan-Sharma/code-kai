@@ -44,6 +44,10 @@ public class PrintLCS {
         return str.toString();
     }
 
+    // If we start from 0 and go to end, lcs will be at the last index and to construct the string
+    // we need to start from the last index dp[n1][n2] and come up to 0 index to get the string in
+    // reverse order. Hence it's better if we get the lcs at dp[0][0] by starting from end of string
+    // and construct the string from front to end to get the string in correct order not reversed order.
     public void populateLCSDpArray(String text1, String text2, int[][] dp) {
         for (int i = text1.length() - 1; i >= 0; i--) {
             for (int j = text2.length() - 1; j >= 0; j--) {
@@ -57,6 +61,6 @@ public class PrintLCS {
     }
 
     public static void main(String[] args) {
-        System.out.println(new PrintLCS().lcsUsingDPArray("brute", "groot"));
+        System.out.println(new PrintLCS().lcsUsingDPArray("abmamaz", "zamamba"));
     }
 }

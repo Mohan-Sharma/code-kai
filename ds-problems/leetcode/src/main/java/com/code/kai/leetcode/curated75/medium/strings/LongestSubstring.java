@@ -1,14 +1,35 @@
 package com.code.kai.leetcode.curated75.medium.strings;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Mohan Sharma
  */
 public class LongestSubstring {
 
-    //it works
+
+    // why O(2n) if string is abcdd, then first the string is scan till last d then it encounters duplicate so it removes one by one scanning
+    // again till d so O(2n)
+    public static int lengthOfLongestSubstring_O_2n(String s) {
+        int length = s.length();
+        if (length < 2)
+            return length;
+        int maxLength = 0;
+        Set<Character> hash = new HashSet<>();
+        int start = 0, end = 0;
+        while (end < length) {
+            char ech = s.charAt(end++);
+            while (!hash.add(ech)) {
+                hash.remove(s.charAt(start++));
+            }
+            maxLength = Math.max(maxLength, end - start);
+        }
+        return maxLength;
+    }
+
     public static int longestSubstringStorage(String s) {
         if (s.length() < 2)
             return s.length();
@@ -23,28 +44,6 @@ public class LongestSubstring {
             storage.put(ch, end++);
         }
         return max;
-    }
-
-    //little slow but works fine. Idea is whenever you find a duplicate clear the map
-    // and move the pointer back to the last repeating char + 1
-    public static int lengthOfLongestSubstring(String s) {
-        if (s.length() < 2)
-            return s.length();
-        int length = 0;
-        Map<Character, Integer> charMap = new HashMap<>();
-        for (int i=0; i<s.length(); ) {
-            char c = s.charAt(i);
-            if (charMap.containsKey(c)) {
-                i = charMap.get(c) + 1;
-                charMap.clear();
-            } else {
-                charMap.put(c, i++);
-            }
-            int currentLength = charMap.size();
-            if (currentLength > length)
-                length = currentLength;
-        }
-        return length;
     }
 
     public static int longestSubstringUsingTemplate(String s) {
@@ -72,6 +71,6 @@ public class LongestSubstring {
     }
 
     public static void main(String[] args) {
-        System.out.println(longestSubstringUsingTemplate("bbbbb"));
+        System.out.println(lengthOfLongestSubstring_O_2n("abcabcbb"));
     }
 }

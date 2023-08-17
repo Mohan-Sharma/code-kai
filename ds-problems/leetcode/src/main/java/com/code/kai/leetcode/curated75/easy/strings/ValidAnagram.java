@@ -7,6 +7,7 @@ public class ValidAnagram {
         final int[] dp = new int[26];
         s.chars().forEach(c -> dp[c - 'a']++);
         t.chars().forEach(c -> dp[c - 'a']--);
+        //no elements of this stream match the provided predicate
         return IntStream.of(dp).noneMatch(data -> data != 0);
     }
 

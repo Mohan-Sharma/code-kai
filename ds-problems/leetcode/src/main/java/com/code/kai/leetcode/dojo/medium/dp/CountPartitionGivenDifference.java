@@ -25,24 +25,6 @@ public class CountPartitionGivenDifference {
         return new CountSubsetSumK().countSubsetBottomUpTabulation(arr, s2);
     }
 
-    private static void populateDP(int[] arr, int sum, boolean[][] dp, int n) {
-        for (int i = 0; i < n; i++) {
-            dp[i][0] = true;
-        }
-        if (arr[0] <= sum)
-            dp[0][arr[0]] = true;
-
-        for (int i = 1; i < n; i++) {
-            for (int j = 1; j <= sum; j++) {
-                boolean notPick = dp[i - 1][j];
-                boolean pick = false;
-                if (j >= arr[i])
-                    pick = dp[i -1][j - arr[i]];
-                dp[i][j] = pick || notPick;
-            }
-        }
-    }
-
     public static void main(String[] args) {
         System.out.println(countPartitions(4, 0, new int[] {1, 1, 1, 1}));
     }
