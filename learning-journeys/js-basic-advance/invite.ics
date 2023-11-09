@@ -1,0 +1,95 @@
+BEGIN:VCALENDAR
+METHOD:REQUEST
+PRODID:Microsoft Exchange Server 2010
+VERSION:2.0
+BEGIN:VTIMEZONE
+TZID:India Standard Time
+BEGIN:STANDARD
+DTSTART:16010101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:16010101T000000
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+ORGANIZER;CN=Shalabh.Pandey@sony.com:mailto:Shalabh.Pandey@sony.com
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=mtarrnesha
+ rma@gmail.com:mailto:mtarrnesharma@gmail.com
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=Rakshith.K
+ arpur@sony.com:mailto:Rakshith.Karpur@sony.com
+ATTACH:CID:2F1F0CFFC895A848B2BF11A978A6EC7A@apcprd04.prod.outlook.com
+DESCRIPTION;LANGUAGE=en-US:Hi Mohan\,\n\nThank you for showing interest in 
+ attending the interview with Sony India Software Centre. Request you to jo
+ in the call 2 mins before the schedule and please be in a good network spa
+ ce for smooth interview process.\n\nNote: Keep any Govt ID card handy and 
+ ensure that there is no one round you while taking the interview.\n\n@Karp
+ ur\, Rakshith<mailto:Rakshith.Karpur@sony.com>Kindly capture the snapshot 
+ of candidate along with their Govt ID and please attach the same while sha
+ ring the feedback.\n\nThanks\,\nShalabh\n_________________________________
+ _______________________________________________\nMicrosoft Teams meeting\n
+ Join on your computer\, mobile app or room device\nClick here to join the 
+ meeting<https://teams.microsoft.com/l/meetup-join/19%3ameeting_MTEyODM0Y2I
+ tZTlhMy00MjYzLTljMGYtNzRjODYxYWRjMzIy%40thread.v2/0?context=%7b%22Tid%22%3
+ a%2266c65d8a-9158-4521-a2d8-664963db48e4%22%2c%22Oid%22%3a%220602d445-5223
+ -4122-959e-9bcec7038c1a%22%7d>\nMeeting ID: 278 197 697 14\nPasscode: mJSK
+ Zd\nDownload Teams<https://www.microsoft.com/en-us/microsoft-teams/downloa
+ d-app> | Join on the web<https://www.microsoft.com/microsoft-teams/join-a-
+ meeting>\nLearn More<https://aka.ms/JoinTeamsMeeting> | Meeting options<ht
+ tps://teams.microsoft.com/meetingOptions/?organizerId=0602d445-5223-4122-9
+ 59e-9bcec7038c1a&tenantId=66c65d8a-9158-4521-a2d8-664963db48e4&threadId=19
+ _meeting_MTEyODM0Y2ItZTlhMy00MjYzLTljMGYtNzRjODYxYWRjMzIy@thread.v2&messag
+ eId=0&language=en-US> | Legal<https://sony.sharepoint.com/:b:/s/SonyGlobal
+ LegalLink/ETJYYqiascRIvH2rJqLxDGYBtKHPRmF38r-NacZRs8c4OA?e=lZa8Me>\n______
+ __________________________________________________________________________
+ \n\n
+UID:040000008200E00074C5B7101A82E00800000000A057040EB24AD901000000000000000
+ 01000000003AE2B34BA5AF740A297A67387C15E9E
+SUMMARY;LANGUAGE=en-US:HR Discussion :: Mohan Sharma :: Hybris Lead Develop
+ er
+DTSTART;TZID=India Standard Time:20230228T110000
+DTEND;TZID=India Standard Time:20230228T120000
+CLASS:PUBLIC
+PRIORITY:5
+DTSTAMP:20230227T081937Z
+TRANSP:OPAQUE
+STATUS:CONFIRMED
+SEQUENCE:0
+LOCATION;LANGUAGE=en-US:Microsoft Teams Meeting
+X-MICROSOFT-CDO-APPT-SEQUENCE:0
+X-MICROSOFT-CDO-OWNERAPPTID:-1950668825
+X-MICROSOFT-CDO-BUSYSTATUS:TENTATIVE
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-CDO-INSTTYPE:0
+X-MICROSOFT-SKYPETEAMSMEETINGURL:https://teams.microsoft.com/l/meetup-join/
+ 19%3ameeting_MTEyODM0Y2ItZTlhMy00MjYzLTljMGYtNzRjODYxYWRjMzIy%40thread.v2/
+ 0?context=%7b%22Tid%22%3a%2266c65d8a-9158-4521-a2d8-664963db48e4%22%2c%22O
+ id%22%3a%220602d445-5223-4122-959e-9bcec7038c1a%22%7d
+X-MICROSOFT-SCHEDULINGSERVICEUPDATEURL:https://api.scheduler.teams.microsof
+ t.com/teams/66c65d8a-9158-4521-a2d8-664963db48e4/0602d445-5223-4122-959e-9
+ bcec7038c1a/19_meeting_MTEyODM0Y2ItZTlhMy00MjYzLTljMGYtNzRjODYxYWRjMzIy@th
+ read.v2/0
+X-MICROSOFT-SKYPETEAMSPROPERTIES:{"cid":"19:meeting_MTEyODM0Y2ItZTlhMy00MjY
+ zLTljMGYtNzRjODYxYWRjMzIy@thread.v2"\,"private":true\,"type":0\,"mid":0\,"
+ rid":0\,"uid":null}
+X-MICROSOFT-ONLINEMEETINGCONFLINK:conf:sip:Shalabh.Pandey@sony.com\;gruu\;o
+ paque=app:conf:focus:id:teams:2:0!19:meeting_MTEyODM0Y2ItZTlhMy00MjYzLTljM
+ GYtNzRjODYxYWRjMzIy-thread.v2!0602d44552234122959e9bcec7038c1a!66c65d8a915
+ 84521a2d8664963db48e4
+X-MICROSOFT-DONOTFORWARDMEETING:FALSE
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+X-MICROSOFT-LOCATIONS:[ { "DisplayName" : "Microsoft Teams Meeting"\, "Loca
+ tionAnnotation" : ""\, "LocationSource" : 0\, "Unresolved" : false\, "Loca
+ tionUri" : "" } ]
+BEGIN:VALARM
+DESCRIPTION:REMINDER
+TRIGGER;RELATED=START:-PT15M
+ACTION:DISPLAY
+END:VALARM
+END:VEVENT
+END:VCALENDAR
